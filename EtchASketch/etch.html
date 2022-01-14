@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <link rel = "stylesheet" href = "style.css">
+
+</head>
+
+<body>
+
+    
+    <div id = "square" style = "width: 250px;height: 250px; border: 1px solid #000">square</div>
+    <script>
+    // Clone element
+    const squareObj = document.getElementById("square");
+    const squareCopy = squareObj.cloneNode(true);
+    //For loop of appending square copies
+
+    
+    for (let i = 0; i < 5; i++){
+        document.getElementById("square").appendChild(squareCopy);
+    }
+    
+   
+
+   
+
+    </script>
+
+</body>
+</html>
