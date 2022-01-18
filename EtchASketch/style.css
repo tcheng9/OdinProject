@@ -1,3 +1,4 @@
-.square{
-    background-color:#000;
+.parentDiv{
+    display:flex;
+    flex-wrap:wrap;
 }
