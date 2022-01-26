@@ -1,0 +1,13 @@
+.buttons 
+{
+    display:flex;
+    border: none;
+    
+    
+    text-align: center;
+    
+
+    display:inline-block;
+    font-size: 16px;
+}
+
