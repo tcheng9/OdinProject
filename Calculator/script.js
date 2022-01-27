@@ -36,81 +36,51 @@ function operate(operator, a,b)
 }
 
 var display = document.querySelector("#display");
-var buttons = document.querySelectorAll('button');
+//var buttons = document.querySelectorAll('button');
 
-var stringholder = ""
+var stringHolder = ""
 
-
-const keys = Array.from(document.querySelectorAll('.key'));
-//keys.forEach(key => key.addEventListener('click', adder));
-
-console.log(keys);
-
-//const btn_temp = document.getElementById('btn1').value;
-
-function fun1()
-{
-    stringholder += btn_temp;
-    display.textContent = stringholder ;
-
-}
-
-btn1.addEventListener('click', fun1);
-
-
-
-const btn_temp2 = document.getElementById('btn2').value;
-
-function fun2()
-{
-    stringholder += btn_temp2;
-    display.textContent = stringholder ;
-
-}
-
-btn2.addEventListener('click', fun2);
-
-/*Backup//function clickFunc(e)
-{  
-    
-    stringholder += "1";
-    display.textContent = stringholder ;
-    //var key = document.querySelector(`div[data-key="${e.keyCode}"]`); 
-    //console.log(key);
-}
-*/
-
-
-
-
-/////////Dynamic attempt
-
-const btns = document.querySelectorAll("btn")
-for (let i = 0; i<btns.length; i++){
-    btns[i].addEventListener("click", function(e){
-        e.target.innerHTML;
-        })};
-
+//Step 1: Getting buttons
 /*
-var  = document.getElementsByTagName("input");
+const buttons = document.querySelectorAll("input");
 
-for (var i = 0; i < inputs.length; i++)
-{
-    inputs[i].addEventListener("click", function(e){
-        inputs[i].value;
-    });
+buttons.forEach(function(item){
+    console.log(item);
     
-}
+})
 */
+// REFLECTION: NOT SURE IF QUERY SELECTOR LETS YOU GET BUTTON VALUE, TRYING getElementsByTagName
+//Step 1 - Attempt 2
 /*
+const buttons = document.getElementsByTagName("input");
 
-function getBtnValue(e)
-{
-    var val = e.value
-    stringholder += val;
-    display.textContent = stringholder;
-}
+forEach(function(e){
+    console.log(e.value);
+})
 */
 
-//https://typeofnan.dev/how-to-bind-event-listeners-on-dynamically-created-elements-in-javascript/
+//Step 2: Getting button values
+//NOTE: all I changed was "item" -> item.value
+/*
+const buttons = document.querySelectorAll("input");
 
+buttons.forEach(function(item){
+    console.log(item.value);
+    console.log(item);
+})
+*/
+//Step 3: How to loop through buttons?
+//ANSWER: Already done, you use .forEach
+
+//Step 4: Loop through button for each value
+//ANSWER: already done, use .forEach(item) => console.log(item.value);
+
+//Step 5: Set a event that register only on clicks and updates the page
+const buttons = document.querySelectorAll("input");
+
+buttons.forEach(function(item){
+    item.addEventListener("click", function(){
+        stringHolder += item.value;
+        display.textContent = stringHolder;
+    })
+})
