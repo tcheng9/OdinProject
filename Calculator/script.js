@@ -13,23 +13,23 @@ let divide = (a,b) => a / b;
 function operate(operator, a,b)
 {
     //Should do some sortof string manipulation to turn operator into lower case
-        if (operator === add)
+        if (operator === "+")
         {
             return add(a,b);
             
         }
 
-        if (operator === subtract)
+        if (operator === "-")
         {
             return subtract(a,b);
         }
 
-        if (operator === multiply)
+        if (operator === "*")
         {
             return multiply(a,b);
         }
 
-        if (operator === divide)
+        if (operator === "/")
         {
             return divide(a,b);
         }
@@ -174,62 +174,70 @@ while str != "=":
 
 //Actually implementing second attempt
 const buttons = document.querySelectorAll("input");
-
+let returnArr = [];
+let returnSum = 0;
+let operationArr = [];
+let counter = 1; 
 //Semi-pseudo code in one go
 buttons.forEach(function(item){
+    
     item.addEventListener("click", function(){
         stringHolder += item.value;
         display.textContent = stringHolder;
-        let returnArr = [];
-        let returnSum = 0;
+        
+        //If item value === + - / * then add to a operationArr
+        
+        if (item.value === "+")
+        {
+            operationArr.push("+");
+        }
+
+        if (item.value === "-")
+        {
+            operationArr.push("-");
+        }
+
+        if (item.value === "*")
+        {
+            operationArr.push("*");
+        }
+
+        if (item.value === "/")
+        {
+            operationArr.push("/");
+        }
+        
         if (item.value === "=") 
         {
-            //returnArr = stringHolder.split("/[+-*/]/");
             returnArr = stringHolder.split(/[+,-,*, /, = ]/);
-            console.log(returnArr);
             //Loop through array, if arr[i] = special symbol then??
                 //Initial value = arr[i]
                 //OFFSET THE START OF THE LOOP!!!! num1 = arr[0], if arr[1] = "+", then arr[1+1] = num 2, etc.
-            let returnSum = returnArr[0];
-
+            
+                let returnSum = returnArr[0];
+            //Convert num in the string to ints
             for (var i = 0; i < returnArr.length - 1; i++)
             {
-                try
-                {
-                    returnArr[i] = parseInt(returnArr[i]);
-                } 
-
-                catch(err)
-                {
-                    Console.log("Not a num");
-                }
-                
+                returnArr[i] = parseInt(returnArr[i]);
             }
-            /*
-            for (var i = 1; i < returnArr.length - 1; i++)
+
+        
+            
+
+            
+            console.log(operationArr);
+            console.log(returnSum);
+            console.log(returnArr[counter]);
+
+            for (var i = 0; i < operationArr.length; i++)
             {
-                if (returnArr[i] === "+")
-                {
-                    add(returnSum, returnArr[i+1]);
-                }
-
-                if (returnArr[i] === "-")
-                {
-                    subtract(returnSum, returnArr[i+1]);
-                }
-
-                if (returnArr[i] === "*")
-                {
-                    multiply(returnSum, returnArr[i+1]);
-                }
-
-                if (returnArr[i] === "/")
-                {
-                    divide(returnSum, returnArr[i+1]);
-                }
-
+                
+                returnSum = operate(operationArr[i], returnSum, returnArr[counter]);
+                counter += 1;
+                console.log("int" + returnSum);
             }
-            */
+            console.log("end" + returnSum);
+            
         }
 
         if (item.value === "C")
@@ -238,6 +246,9 @@ buttons.forEach(function(item){
             stringHolder = "";
             display.textContent = "Ready for new values";
         }
+
+        
+        
 })
 
 
