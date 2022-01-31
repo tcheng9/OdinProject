@@ -1,0 +1,10 @@
+Improvements:
+1. Finish the html color
+2. Remove all colors
+
+Notes:
+"-" will need to be "\-" in regex because it is a reserved symbol
+
+
+
+

@@ -8,8 +8,6 @@ let multiply = (a,b) => a * b;
 
 let divide = (a,b) => a / b;
 
-
-
 function operate(operator, a,b)
 {
     //Should do some sortof string manipulation to turn operator into lower case
@@ -34,6 +32,7 @@ function operate(operator, a,b)
             return divide(a,b);
         }
 }
+
 
 var display = document.querySelector("#display");
 //var buttons = document.querySelectorAll('button');
@@ -178,6 +177,7 @@ let returnArr = [];
 let returnSum = 0;
 let operationArr = [];
 let counter = 1; 
+let summer = 0;
 //Semi-pseudo code in one go
 buttons.forEach(function(item){
     
@@ -209,42 +209,47 @@ buttons.forEach(function(item){
         
         if (item.value === "=") 
         {
-            returnArr = stringHolder.split(/[+,-,*, /, = ]/);
+            
+            
+            let returnArr = stringHolder.split(/[+,\-,*,/,=]/);
+            
             //Loop through array, if arr[i] = special symbol then??
                 //Initial value = arr[i]
                 //OFFSET THE START OF THE LOOP!!!! num1 = arr[0], if arr[1] = "+", then arr[1+1] = num 2, etc.
             
-                let returnSum = returnArr[0];
+            
             //Convert num in the string to ints
             for (var i = 0; i < returnArr.length - 1; i++)
             {
                 returnArr[i] = parseInt(returnArr[i]);
+                
             }
-
-        
+            
+           
             
 
             
-            console.log(operationArr);
-            console.log(returnSum);
-            console.log(returnArr[counter]);
-
+            returnSum = returnArr[0];
             for (var i = 0; i < operationArr.length; i++)
             {
+                console.log("OperationArr: " + operationArr);
+                console.log("Return val: " + returnSum);
+                console.log("Val Arr: " + returnArr);
+                summer = operate(operationArr[i], returnSum, returnArr[counter]);
                 
-                returnSum = operate(operationArr[i], returnSum, returnArr[counter]);
-                counter += 1;
-                console.log("int" + returnSum);
+                counter +=1;
             }
-            console.log("end" + returnSum);
-            
+            display.textContent = summer;
         }
-
+        
         if (item.value === "C")
         {
             returnArr = [];
             stringHolder = "";
             display.textContent = "Ready for new values";
+            operationArr = []
+            returnSum = 0;
+            counter = 1;
         }
 
         
