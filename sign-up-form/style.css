@@ -1,0 +1,109 @@
+/*
+ Split the screen in half
+ .split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+
+  .left {
+    left: 0;
+    background-color: #111;
+  }
+  
+
+  .right {
+    right: 0;
+    background-color: red;
+  }
+  
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+
+  .centered img {
+    width: 150px;
+    border-radius: 50%;
+  } 
+
+*/
+
+/*Splitting screen in half */
+
+.split {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  
+  
+}
+
+
+/* Controlling left side */
+
+.left {
+  left:0;
+  width:40%;
+  background-size: cover;
+  background-image: url("tree.jpeg");
+  background-repeat: no-repeat;
+  height:100%;
+}
+
+/* Controlling right side */
+
+.right {
+  right: 0;
+  width:60%;
+}
+
+
+/* control content in the center horizontlaly and vertically */
+
+
+/* Style the image inside the centered container if needed */
+.centered .img {
+ 
+  background-position: left;
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+}
+
+.split1, 
+.split2,
+.split3 {
+  margin:0px;
+  padding: 0px;
+}
+
+.split1 {
+  height:40%;
+  background-color: blue;
+  
+}
+
+.split2 {
+  height:20%;
+  background-color: grey;
+}
+
+.split3 {
+  height:40%;
+  background-color: red;
+}
+
+.pic1 {
+  display: flex;
+}
