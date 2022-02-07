@@ -28,43 +28,50 @@
     </div>" -->
     
     <div class = "split1">
-      <p> This is not a real online service!
-        You know you need something like this in your life to help you realize your deepest dreams.
-        Sign up now to get start
+      <p class = "text1" This is not a real online service!>
+        You know you need something like this in your life to help you 
+        realize your deepest dreams.
+        Sign up <em> now </em> to get start
       </p>
 
       <p> 
-        You know you want to.  
+        You know <em> you </em> want to.  
       </p>
     </div>
     <div class = "split2">
-      <fieldset>
+      <fieldset class = "form1">
+          <fieldset class = "part1">
+          <label for ="first_name">First Name: </label>
+          <input type = "text" id = "first_name" name = "first_name">
+          
+        </fieldset>
+        <fieldset class = "part2">
+          <label for = "user_email"> Email Address: </label>
+          <input type = "email" id = "user_email" name = "email" placeholder = "you@example.com">        
+        </fieldset>
         
-        <label for ="first_name">First Name: </label>
-        <input type = "text" id = "first_name" name = "first_name">
-        
-        <label for = "last_name"> Last Name: </label>
-        <input type = "text" id = "last_name" name = "last_name">
+          <label for = "password"> Password: </label>
+          <input type = "password" id = "password" name = "password">
+       
 
-        <label for = "user_email"> Email Address: </label>
-        <input type = "email" id = "user_email" name = "email" placeholder = "you@example.com">        
+     
+       
 
         <label for = "phone_number"> Phone Number: </label>
         <input type = "tel" id = "phone_number" name = "phone_number">
 
-        <label for = "password"> Password: </label>
-        <input type = "password" id = "password" name = "password">
-
         <label for = "confirm_password"> Confirm Password: </label>
         <input type = "password" id = "confirm_password" name = "confirm_password">
-
+      
       </fieldset>
     </div>
 
     <div class = "split3">
       <fieldset>
         <button type = "submit"> Submit </button>
+        <p> Text here
         <a href = "https://google.com/"> log in </a>
+        </p> 
       </fieldset>
     </div>
   </div>
