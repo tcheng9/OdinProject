@@ -1,0 +1,61 @@
+
+
+.split {
+    height:100%;
+    position:fixed;
+    z-index:1;
+    top:0;
+}
+
+.left {
+    left:0;
+    width:30%;
+    background-color: skyblue;
+}
+
+.right {
+    right:0;
+    width:70%;
+   
+}
+
+
+.dashBody{
+    height: 75%;
+}
+
+.body1{
+    height:75%;
+    width:50%;
+    background-color:green;
+    position: fixed;
+    left:30%;
+}
+
+.body2 {
+    height:75%;
+    position: fixed;
+    background-color: brown;
+    left: 75%;
+    width:25%;
+}
+
+
+.grid1, 
+.grid2,
+.grid3 {
+    display:grid;
+    grid-template-columns:100px 100px;
+}
+
+.header{
+    height: 25%;
+    background-color:grey;
+    display:grid;
+    grid-gap:10px;
+    grid-template-columns:repeat(5,1fr);
+}
+
+
+
+
