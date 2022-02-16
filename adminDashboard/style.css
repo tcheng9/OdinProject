@@ -22,8 +22,6 @@
 
 
 
-
-
 .grid1, 
 .grid2,
 .grid3
@@ -75,7 +73,7 @@
 .header{
     height: 25%;
     width:75%;
-    background-color:grey;
+    background-color:white;
     position:fixed;
     left:30%;
     top:0;
@@ -89,6 +87,19 @@
 
 .item2 {
     grid-column: span 7;
+    background:white;
+}
+
+.searchbar{
+    background-color: lightgrey;
+    border-radius: 20px;  
+    
+}
+
+.name1 {
+    font-weight:bold;
+    font-size: 20px;
+    
 }
 
 .item5 {
@@ -117,33 +128,62 @@
 }
 
 /* End of header */
+/* Start of "Your Projects" - body1 */
 .body1{
     height:75%;
     width:50%;
-    background-color:green;
+    background-color:lightgrey;
     position: fixed;
     left:30%;
     bottom: 0;
     
 }
 
+
+
+/* End of body1 */
 .title1{
     font-size: 24px;
     padding-top: 16px;
-    padding-left:10px;
+    padding-left:40px;
     padding-bottom: 10px;
 }
 
-.containerB{
+.containerB1{
     display:grid;
     grid-template-columns:repeat(2, 400px);
-    grid-template-rows: repeat(3,200px);
+    grid-template-rows: repeat(3,250px);
     grid-gap:10px;
-    padding:10px;
+    padding-left:50px;
+   
+    
+
+}
+
+.mainBody{
+    display:grid;
+    max-width:250px;
+   
+}
+
+.bodyTitle{
+    font-weight:bold;
+    font-size: 20px;
+    align-self: end;
+    margin-bottom: 0px;
+    padding-bottom:0px;
+    
     
 }
 
+.bodyText{
+    margin:0px;
+}
 
+.bodyLogo {
+    justify-self:end;
+    justify-items:end;
+}
 /* */
 .bodyRightTop {
     height:37.5%;
@@ -164,7 +204,19 @@
     background-color: yellow;
     left: 80%;
     width:20%;
-    display:grid;
     bottom:0;
 }
 
+
+
+.title3{
+    font-size: 24px;
+    padding-top: 16px;
+    padding-left:10px;
+    padding-bottom: 10px;
+    
+}
+.containerB3{
+    display:grid;
+    grid-template-columns: repeat(2, 25px);
+}
