@@ -147,6 +147,7 @@
     padding-top: 16px;
     padding-left:40px;
     padding-bottom: 10px;
+    font-weight:bold;
 }
 
 .containerB1{
@@ -162,8 +163,20 @@
 
 .mainBody{
     display:grid;
-    max-width:250px;
+    max-width:350px;
+    max-height: 200px;
+    background-color:blue;
+    border-radius:10px;
    
+}
+
+.vertBar{
+    border-left: 6px solid goldenrod;
+    height:200px;
+    padding:0px;
+    margin:0px;
+    position:fixed;
+    
 }
 
 .bodyTitle{
@@ -172,36 +185,83 @@
     align-self: end;
     margin-bottom: 0px;
     padding-bottom:0px;
-    
+    padding-left:25px;
     
 }
 
 .bodyText{
     margin:0px;
+    padding-left:25px;
+    color: #595959;
 }
 
 .bodyLogo {
     justify-self:end;
     justify-items:end;
 }
-/* */
+/* Start of Announcements section */
 .bodyRightTop {
     height:37.5%;
+    top:25%;
+    right:0;
+    width: 20%;
     position: fixed;
-    background-color: brown;
+    background-color:lightgrey;
     left: 80%;
     width: 20%;
-    right:0;
-    top:25%;
+}
+
+.containerB2{
     display:grid;
+    grid-template-columns:repeat(1, 300px);
+    grid-template-rows: repeat(3,125px);
+    
+    justify-content: center;
+    padding-top:25px;
+    background-color:white;
+    border-radius:10px;
+}
+
+.announcementTitle{
+    padding-bottom:0px;
+    margin-bottom:0px;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.announcementBody {
+    padding-top:0px;
+    margin-top:0px;
+    color: #595959;
+    
+}
+
+.announcementBorder{
+    margin-top:0px;
+    padding-top:0px;
+    border-bottom: 6px solid lightgrey;
+    width:300px;
+    height:1px;
+    position:fixed;
+}
+
+.title2{
+    font-size: 24px;
+    padding-top: 16px;
+    padding-left:10px;
+    margin-bottom:10px;
+    
+    font-weight:bold;
     
 }
 
 
+/*  Start of Trending section*/
+
 .bodyRightBottom {
     height:37.5%;
     position: fixed;
-    background-color: yellow;
+    background-color:lightgrey;
     left: 80%;
     width:20%;
     bottom:0;
@@ -213,10 +273,45 @@
     font-size: 24px;
     padding-top: 16px;
     padding-left:10px;
-    padding-bottom: 10px;
+    margin-bottom:0px;
+    padding-bottom:0px;
+    font-weight: bold;
     
 }
+
 .containerB3{
+    background-color:white;
+    border-radius:10px;
+}
+
+.trending{
     display:grid;
-    grid-template-columns: repeat(2, 25px);
+    grid-template-columns: repeat(3, 50px);
+    grid-template-rows: repeat(2, 50px);
+    grid-column: span 2;
+    
+    
+}
+
+.trendLogo{
+    padding-left: 50px;
+    padding-top:20px;
+    padding-right: 10px;
+}
+
+.trendBody{
+    padding-left:50px;
+    grid-column: span 2;
+}
+
+.trendHandle{
+    padding-bottom:0px;
+    margin-bottom:0px;
+    font-weight:bold;
+}
+
+.trendName{
+    margin-top:0px;
+   padding-top:0px;
+   color: #595959;
 }
