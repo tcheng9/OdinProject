@@ -5,6 +5,19 @@ Improvements:
 Notes:
 "-" will need to be "\-" in regex because it is a reserved symbol
 
+Gotchas I didn't deal with:
+1. Can I string multiople functions together?
+2. Round answers with long deciamls
+3. Dealing with "=" before enough numbers are there
+4. Divide by 0 error handling
+
+Extra credit:
+1.Add decimal functionality
+2. Make it look nice
+3. Backspace button -> Easy to do, just do -1 from the stringHolder var
+4. Add keyboard support
+
+
 
 
 
