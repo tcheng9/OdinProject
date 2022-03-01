@@ -10,31 +10,39 @@
     
 </head>
 <body>
-    <button class = "bookForm" id = "formPopUp" onclick = "openForm()">
-        Add new book
-    </button>
+
+
+  
     <div id = "table">
-        
+
     </div>
 
-    <div class = "form-popup" id = "myForm">
-        <form name = myForm class = "form-container" >
-            <label for = "author"> Author</label>
-            <input type = "text" placeholder = "Enter Author" name = "author" required>
-
-            <label for = "title"> Title </label>
-            <input type = "text" placeholder = "Enter Title" name = "title" required>
-            
-            <label for = "pages"> Number of Pages</label>
-            <input type = "text" placeholder = "Enter Number of Pages" name = "pages" required>
-
-            <label for = "readStatus"> Read Status?</label>
-            <input type = "text" placeholder = "Enter Read Status" name = "readStatus" required>
+    <button id = "popUpButton" onclick = "div_show()">
+        popup;
+    </button>
 
 
-            <button type = "submit" class = "submitButton" onclick = "onSubmit()"> Submit </button>
-            <button type = "button" class = "btn cancel" onclick = "closeForm()"> Close </button>
-        </form>
+
+    <div id = "container">
+        <div class = "input"> Author
+            <input id = "bookName" type = "text" placeholder = "John Smith"/>
+        </div>
+
+        <div class = "input"> Title 
+            <input id = "bookTitle" type = "text" placeholder = "JJJ"/>
+        </div>
+
+        <div class = "input">
+            Page length
+            <input id = "bookPageLen" type = "text" placeholder = "631"/>
+        </div>
+
+        <div class = "input">
+            Read?
+            <input id = "bookReadStatus" type = "text" placeholder = "No"/>
+        </div>
+        <button id = "entry"> Input entry" </button>
+        <button id = "close" onclick = "div_hide()"> Close </button>
     </div>
 
 </body>

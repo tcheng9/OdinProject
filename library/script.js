@@ -27,15 +27,10 @@ console.log(bookArr);
 
 let myTable = document.querySelector("#table");
 
-let btn = document.createElement("input");
-btn.type = "button";
-btn.className = "btn";
-btn.value = 451;
-
-let counter = 0;
 
 function createTable(){
     let table = document.createElement("table");
+    table.id = "libraryTable";
     let headerRow = document.createElement('tr');
 
     headers.forEach(headElem => {
@@ -49,8 +44,7 @@ function createTable(){
 
     bookArr.forEach( emp => {
         let row = document.createElement('tr');
-        row.className = counter;
-
+        
         Object.values(emp).forEach(text => {
             let cell  = document.createElement('td');
             let textNode = document.createTextNode(text);
@@ -59,18 +53,7 @@ function createTable(){
             
         })
 
-        //Function to create buttons -> ISSUE: nested within the bookArr loop. I should make my another loop for this
-        let cell = document.createElement('td');
-        let btn = document.createElement("input");
-        btn.type = "button";
-        btn.className = "btn" + counter;
-        btn.value = 451;
 
-        cell.append(btn);
-        
-
-        row.appendChild(btn);
-        counter = counter + 1;
         table.appendChild(row);
        
 
@@ -82,37 +65,46 @@ function createTable(){
 
 
 
+
 // row.appendChild(btn);
 createTable();
 
-//When button is clicked, I want it to run a functionto run a popup form
+//
+var entry = document.getElementById("entry");
+entry.addEventListener("click", addToTable);
 
-// var form = document.getElementById("formPopUp");
-// btn.addEventListener("click", openForm());
+var row = 1;
 
+function addToTable(){
+    var author = document.getElementById("bookName").value;
+    var title = document.getElementById("bookTitle").value;
+    var length = document.getElementById("bookPageLen").value;
+    var read = document.getElementById("bookReadStatus").value;
 
-function openForm(){
-    document.getElementById("myForm").style.display = "block";
+    if (!author || !title || !length || !read){
+        alert("please fill in all the boxes");
+        return;
+    }
+
+    var libraryTable = document.getElementById("libraryTable");
+    var newRow = libraryTable.insertRow(-1);
+
+    var cell1 = newRow.insertCell(0);
+    var cell2 = newRow.insertCell(1);
+    var cell3 = newRow.insertCell(2);
+    var cell4 = newRow.insertCell(3);
+
+    cell1.innerHTML = author;
+    cell2.innerHTML = title;
+    cell3.innerHTML = length;
+    cell4.innerHTML= read;
 }
 
-function closeForm(){
-    document.getElementById("myForm").style.display = "none";
+function div_show(){
+    document.getElementById("container").style.display = "block";
 }
 
-//On form submit click, run this function
-
-/* Document select all form values and run functions to turn
-// into a book object and append to array and remake table
-*/
-function onSubmit(){
-    let formAuthor = document.myForm.author.value;
-    let formTitle = document.myForm.title.value;
-    let formPages = document.myForm.pages.value;
-    let formReadStatus = document.myForm.readStatus.value;
-
-    let book = bookMaker(formAuthor, formTitle, formPages, formReadStatus);
-    
-    
-    addBook(book);
-    createTable();
+function div_hide(){
+    document.getElementById("container").style.display = "none";
 }
+
