@@ -1,0 +1,11 @@
+.tictactoeBoard{
+    display:grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+    grid-gap:25px;
+}
+
+
+.boardCell{
+    border: 5px solid green;
+}
