@@ -1,0 +1,4 @@
+Improvements:
+1. Add a way to get names for players and display them
+2. Add a start button
+3. Generally improve CSS

@@ -2,16 +2,22 @@
     display:grid;
     grid-template-columns: 100px 100px 100px;
     grid-template-rows: 100px 100px 100px;
-    
+    left: 40%;
+    bottom:40%;
+    position:absolute;
 }
 
-
+#reset{
+    position:absolute;
+    bottom:35%;
+    left:50%;
+}
 
 
 #sq1 {
     border-right:5px solid lightgrey;
     border-bottom: 5px solid lightgrey;
-
+    
     
 }
 

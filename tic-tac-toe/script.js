@@ -33,7 +33,7 @@ var gameBoard = (function(innerVals) {
         for (let j = 0; j < 3; j++){
             //Create button inside so it's a "new" one each time
             var button = document.createElement("BUTTON");
-            button.innerHTML = "test" + counter;
+            button.innerHTML = "click me!";
             
             board[i][j].appendChild(button);
             counter++;
@@ -59,7 +59,7 @@ var gameBoard = (function(innerVals) {
         document.querySelectorAll('.boardCell').forEach(item => {
             item.addEventListener("click", event => {
                 if (checkWinner() == true){
-                    
+                    alert("winner");
                     return;
                 }
               
@@ -130,16 +130,35 @@ var gameBoard = (function(innerVals) {
     }
 
     
-
+    //Creating a button that will reset the game when clicked
     function resetGame(){
+        //Creating reset button and appending it to the HTML site
+        let resetBtn = document.createElement("button");
         
+        resetBtn.id = "reset";
+        resetBtn.innerHTML = "Reset Game";
+        document.body.appendChild(resetBtn);
+        resetBtn.addEventListener("click", event => {
+            counter = 1; 
+            for (let i = 0; i < 3; i++){
+                for (let j = 0; j < 3; j++){
+                    //Create button inside so it's a "new" one each time
+                    
+                    board[i][j].textContent = " ";
+                    counter++;
+                    gameLogic();
+                };
+            };
+        })
+
     }
-   
+    resetGame();
     //Returning factory functions
     return {
         getBoard: board,
-        boardValues: callBoard()
-        
+        boardValues: callBoard(),
+        gameLogic, 
+        resetGame
         };
     }
 )();
