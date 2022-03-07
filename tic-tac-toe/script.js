@@ -1,12 +1,6 @@
 //Gameboard module
 var gameBoard = (function(innerVals) {
-    //Creating tic tac toe board 
-    // let board = [
-    //             ["00", "01", "02"],
-    //             ["10", "11", "12"],
-    //             ["20", "21", "22"]
-    //         ];
-   
+    //Initial board setup - 3x3 matrix
     let board = [
         ["", "", ""],
         ["", "", ""],
@@ -18,7 +12,7 @@ var gameBoard = (function(innerVals) {
     let counter = 1; 
     for (let i = 0; i < 3; i++){
         for (let j = 0; j < 3; j++){
-            let div = document.getElementById(counter);
+            let div = document.getElementById("sq"+counter);
             board[i][j] = div;
             counter++;
         }
@@ -47,41 +41,100 @@ var gameBoard = (function(innerVals) {
     };
 
     //Create a listener event for each button
-    document.querySelectorAll('.boardCell').forEach(item => {
-        item.addEventListener("click", event => {
+    // document.querySelectorAll('.boardCell').forEach(item => {
+    //     item.addEventListener("click", event => {
             
-            console.log(item.getAttribute("id"));
-        })
-    })
+    //         console.log(item.getAttribute("id"));
+    //     })
+    // })
     
-    function getPlayer(){
-        let currentPlayer = 0;
-        let player1 = createPlayer("tommy", "1", "o");
-        let player2 = createPlayer("michael", "2", "x");
-
-        
-    }
-    //Creating a way to create turns
-    function getTurn(){
-        //Creating players
-        let curreentPlayer = 0;
-        let player1 = createPlayer("tommy", "1", "O");
-        let player2 = createPlayer("michael", "2", "x");
-
+    
+   
+    function gameLogic(){
         let turnCounter = 0;
+        let currentPlayer = 0;
+        let player1 = createPlayer("tommy", "1", "O");
+        let player2 = createPlayer("michael", "2", "X");
         
-        // while (turnCounter < 9){
+        document.querySelectorAll('.boardCell').forEach(item => {
+            item.addEventListener("click", event => {
+                if (checkWinner() == true){
+                    
+                    return;
+                }
+              
+                if (turnCounter < 9 && item.textContent != "X" && item.textContent != "O"){
+                    if (turnCounter % 2 == 0){
+                        item.textContent = player1.getMarker;
+                        turnCounter++;
+                        checkWinner();
+                        
+                    } else {
+                        item.textContent = player2.getMarker;
+                        turnCounter++;
+                        checkWinner();
+                        
+                    }
+                   
+                } else if (checkWinner() == true){
+                    return;
+                }
+                
+                 
+        })
+        });
         
-        //     if (turnCounter % 2 == 0){
-        //         //It's player one's marker
-        //     } else {
-        //         //It's player 2's marker
-        //     }
-        //     turnCounter++;
-        
+    }
+    
+    
+    gameLogic();
 
+    function checkWinner(){
+        //Player 1 win conditions
+        //Diagonals for player1
+        if (
+            board[0][0].textContent == "O" && board[1][1].textContent == "O" && board[2][2].textContent == "O" ||
+            board[0][2].textContent == "O" && board[1][1].textContent == "O" && board[2][0].textContent == "O" ||
+            board[0][0].textContent == "O" && board[1][0].textContent == "O" && board[2][0].textContent == "O" ||
+            board[0][1].textContent == "O" && board[1][1].textContent == "O" && board[2][1].textContent == "O" ||
+            board[0][2].textContent == "O" && board[1][2].textContent == "O" && board[2][2].textContent == "O" ||
+            board[0][0].textContent == "O" && board[0][1].textContent == "O" && board[0][2].textContent == "O" ||
+            board[1][0].textContent == "O" && board[1][1].textContent == "O" && board[1][2].textContent == "O" ||
+            board[2][0].textContent == "O" && board[2][1].textContent == "O" && board[2][2].textContent == "O"
+            ){
+            console.log("Player 1 wins!");
+            return true;
+        }
+
+      
+    
+        //Player 2 win conditions
+   
+            if (
+                board[0][0].textContent == "X" && board[1][1].textContent == "X" && board[2][2].textContent == "X" ||
+                board[0][2].textContent == "X" && board[1][1].textContent == "X" && board[2][0].textContent == "X" ||
+                board[0][0].textContent == "X" && board[1][0].textContent == "X" && board[2][0].textContent == "X" ||
+                board[0][1].textContent == "X" && board[1][1].textContent == "X" && board[2][1].textContent == "X"||
+                board[0][2].textContent == "X" && board[1][2].textContent == "X" && board[2][2].textContent == "X" ||
+                board[0][0].textContent == "X" && board[0][1].textContent == "X" && board[0][2].textContent == "X" ||
+                board[1][0].textContent == "X" && board[1][1].textContent == "X" && board[1][2].textContent == "X"||
+                board[2][0].textContent == "X" && board[2][1].textContent == "X" && board[2][2].textContent == "X"
+                ){
+                console.log("Player 2 wins!");
+                return true;
+            }
+        
+       
+            //Horizontals for player1
+      
     }
 
+    
+
+    function resetGame(){
+        
+    }
+   
     //Returning factory functions
     return {
         getBoard: board,
@@ -152,5 +205,4 @@ function createPlayer(firstName,lastName, marker){
 //Testing player's marker
 let player1 = createPlayer("tommy", "cheng", "x");
 let player2 = createPlayer("tyrion", "lannister", "o");
-console.log(player1.getMarker);
-console.log(player2.getMarker);
+
