@@ -1,0 +1,6 @@
+Improvements:
+1. Tie additional functionally (read status, removing, adding) closer to Book object. Current implementation is more loosely connected without the use of a book object. Book object allows for cleaner functionality.
+
+2. Add CSS - The CSS for this one is simple so I'm lazy about it. Mainly centering the fields. Adding a "whiteout" background for the form that pops up.
+
+3. Revise at a later date. This project required a lot of interaction between objects/classes and tables. I need to revise how to create the table so it can better do the updating, removing and editing table. 

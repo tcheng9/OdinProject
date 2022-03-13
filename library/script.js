@@ -81,6 +81,8 @@ function addToTable(){
     var length = document.getElementById("bookPageLen").value;
     var read = document.getElementById("bookReadStatus").value;
 
+    var newBook = bookMaker(author, title, length, read);
+    addBook(newBook);
     if (!author || !title || !length || !read){
         alert("please fill in all the boxes");
         return;
@@ -93,11 +95,52 @@ function addToTable(){
     var cell2 = newRow.insertCell(1);
     var cell3 = newRow.insertCell(2);
     var cell4 = newRow.insertCell(3);
+    cell4.id = "readStatusx"
+    var cell5 = newRow.insertCell(4);
+    var cell6 = newRow.insertCell(5);
+    //Creating a button
+    let btn = createButton("delete", "deleteBtn", "Delete");
+    btn.addEventListener("click", deleteRow);
+    
+    let btn2 = createButton("changeReadStatus", "readStat", "Change status");
+    btn2.addEventListener("click", readStatusChange);
 
     cell1.innerHTML = author;
     cell2.innerHTML = title;
     cell3.innerHTML = length;
     cell4.innerHTML= read;
+    cell5.appendChild(btn);
+    cell6.appendChild(btn2);
+    
+}
+
+function createButton(buttonUse, className,innerText){
+    let btn = document.createElement("button");
+    btn.type = "button" + buttonUse;
+    btn.className = className;
+    btn.innerHTML = innerText;
+   
+    return btn;
+}
+
+function deleteRow(e){
+    if (!e.target.classList.contains("deleteBtn")){
+        return;
+    }
+
+    const btn = e.target;
+    btn.closest("tr").remove();
+}
+
+
+function readStatusChange(e){
+    if (!e.target.classList.contains("buttonchangeReadStatus")){
+        return;
+    }
+    console.log("working");
+    const btn = e.target;
+    btn.closest("td").innerHTML = "100";
+
 }
 
 function div_show(){
