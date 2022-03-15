@@ -58,10 +58,10 @@ project1.addItem(list1);
 
 //Print the list backout to check if it's working
 //console.log(project1);
-console.log(project1.todoArray[0].getTitle);
-console.log(project1);
+// console.log(project1.todoArray[0].getTitle);
+// console.log(project1);
 
-console.log("break");
+// console.log("break");
 
 //Parent container to contain and eventually display all projects
 const allProjects = () => {
@@ -90,4 +90,15 @@ parentProject.appendProject(project1);
 parentProject.appendProject(project2);
 parentProject.appendProject(project3);
 
-parentProject.printProjects();
+
+console.log("foreach function");
+parentProject.allProjectsArr.forEach(number => 
+    //QUESTION: Why am I using "," as end lines and not ";"
+    let divHolder = document.createElement("div"),
+    divHolder.id = "gridSq",
+    console.log(number.name),
+    );
+
+//Left off at: Trying to create a for each function to get each project's name
+//After I get each project's name, I want to append each name into the div container
+//so that I can start displaying box elements in HTML and start adding funtionality
