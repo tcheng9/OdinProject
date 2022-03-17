@@ -1,0 +1,14 @@
+#projectContainer{
+    display:grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 150px;
+    grid-gap: 10px;
+}
+
+#gridSq{
+    display:grid;
+    grid-template-columns: 100px ;
+    grid-template-rows: 150px;
+    grid-gap: 10px;
+    border-right: 10px solid black;
+}

@@ -92,13 +92,108 @@ parentProject.appendProject(project3);
 
 
 console.log("foreach function");
-parentProject.allProjectsArr.forEach(number => 
-    //QUESTION: Why am I using "," as end lines and not ";"
-    let divHolder = document.createElement("div"),
-    divHolder.id = "gridSq",
-    console.log(number.name),
-    );
 
-//Left off at: Trying to create a for each function to get each project's name
-//After I get each project's name, I want to append each name into the div container
-//so that I can start displaying box elements in HTML and start adding funtionality
+//PROBLEM FOR LATER: Maybe this should be inside a "build logic/board factory function"
+
+// function displayProjBtn() {
+//     let containerDiv = document.getElementById("projectContainer");
+   
+//     //Steps needed
+//     // Create btns
+//     //Iterate through the project arr to get project's name
+
+//     //Iterate through all the project names and create a div
+//     parentProject.allProjectsArr.forEach(number => {
+//         //This is to go through and get each project's name and append it to the div container
+//         let divHolder = document.createElement("div");
+//         divHolder.id = "gridSq";
+//         divHolder.className = "square";
+
+//         let btn = document.createElement("button");
+//         btn.innerHTML = number.name;
+//         btn.id = "gridBtn";
+//         divHolder.appendChild(btn);
+
+        
+//         containerDiv.appendChild(divHolder);
+
+//         //Let's try to add a button within this div
+
+        
+//     });
+
+//     //Create a btn within each div
+
+
+// }
+
+
+// Next step: Each button should open/hide another box of text
+// WHICH will represent the todolists that open up when a project is clicked
+
+
+
+let siteLogic = () => {
+    function displayProjBtn() {
+        let containerDiv = document.getElementById("projectContainer");
+        
+        //Steps needed
+        // Create btns
+        //Iterate through the project arr to get project's name
+    
+        //Iterate through all the project names and create a div
+        console.log('inner');
+        parentProject.allProjectsArr.forEach(number => {
+            //This is to go through and get each project's name and append it to the div container
+            let divHolder = document.createElement("div");
+            divHolder.id = "gridSq";
+            divHolder.className = "square";
+    
+            let btn = document.createElement("button");
+            btn.innerHTML = number.name;
+            btn.id = "gridBtn";
+            btn.className = "button";
+            divHolder.appendChild(btn);
+    
+            
+            containerDiv.appendChild(divHolder);
+    
+            //Let's try to add a button within this div 
+        });
+    }
+
+    //For each button, add a toggle button effect to show/hide a div
+    function btnToggle(){
+        let targetDiv = document.getElementById("testHiding");
+        let btns = document.getElementsByClassName("button");
+        for (var i = 0 ; i < btns.length; i++){
+            btns[i].addEventListener("click", function (){
+                //Function 
+                if (targetDiv.style.display != "none"){
+                    targetDiv.style.display = "none";
+                } else {
+                    targetDiv.style.display = "block";
+                }
+            })
+        }
+
+    }
+
+    // This function will aim to create a div that contains all todos
+    //based on the button that is clicked
+    function displayTodos
+
+    return {
+        displayProjBtn: displayProjBtn,
+        btnToggle:btnToggle,
+
+    }
+}
+
+let site = siteLogic();
+site.displayProjBtn();
+site.btnToggle();
+
+// Next steps:
+// 1. For each project, create a div w/ that class name so there will be divs unique to each project
+// 2. Turn to do  lists into an html list
