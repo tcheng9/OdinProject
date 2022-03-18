@@ -1,20 +1,59 @@
-#projectContainer{
-    display:grid;
-    grid-template-columns: 100px 100px 100px;
-    grid-template-rows: 150px;
-    grid-gap: 10px;
+
+/* Controls the entire page*/
+.body{ 
+    background-color: #37667E;
 }
 
+/* Controls the divs that house buttons - Not the buttons themselves */
 #gridSq{
     display:grid;
     grid-template-columns: 100px ;
     grid-template-rows: 150px;
     grid-gap: 10px;
-    border-right: 10px solid black;
+    
+    
 }
 
+/* Div that houses the buttons */
+#projectContainer{
+    background-color: #DEC4D6;
+    display:grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 150px;
+    grid-gap: 10px;
+
+    
+}
+
+/* Getting all buttons */
+.button{
+    margin:10px;
+    padding:10px;
+    border: 1px solid black;
+    background-color: #ffc6ff;
+    height:125px;
+}
+
+/* Div that houses all todo lists */
+#todoContainer{
+
+    background-color: #DEC4D6;
+    padding-top:10px;
+    padding-bottom:10px;
+    
+    left:30%;
+    top: 30%;
+    position:fixed;
+    
+}
+
+/* The individual todo lists of each proj */
 .projDiv{
-    border: 10px solid purple;
+    border: 1px solid black;
+    padding:10px;
+    margin:10px;
+    background-color: #ffc6ff;
+    max-width: 500px;
+    width:500px;
+    
 }
-
-
