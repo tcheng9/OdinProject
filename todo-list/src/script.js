@@ -136,60 +136,70 @@ console.log("foreach function");
 let siteLogic = () => {
     function displayProjBtn() {
         let containerDiv = document.getElementById("projectContainer");
-        
+        let projectsArr = parentProject.allProjectsArr;
         //Steps needed
         // Create btns
         //Iterate through the project arr to get project's name
-    
-        //Iterate through all the project names and create a div
         
-        parentProject.allProjectsArr.forEach(number => {
-            //This is to go through and get each project's name and append it to the div container
+        //Iterate through all the project names and create a div
+        for (let i = 0; i < projectsArr.length; i++){
+            //Creating a div for the button
             let divHolder = document.createElement("div");
             divHolder.id = "gridSq";
             divHolder.className = "square";
-    
+            
+
+            //Creating a button
             let btn = document.createElement("button");
-            btn.innerHTML = number.name;
+            btn.innerHTML = projectsArr[i].name;
             btn.id = "gridBtn";
             btn.className = "button";
             divHolder.appendChild(btn);
     
             
             containerDiv.appendChild(divHolder);
-    
-            //Let's try to add a button within this div 
-        });
-    }
-
-    //For each button, add a toggle button effect to show/hide a div
-    function btnToggle(){
-        let targetDiv = document.getElementById("testHiding");
-        let btns = document.getElementsByClassName("button");
-        for (var i = 0 ; i < btns.length; i++){
-            btns[i].addEventListener("click", function (){
-                //Function 
-                if (targetDiv.style.display != "none"){
-                    targetDiv.style.display = "none";
-                } else {
-                    targetDiv.style.display = "block";
-                }
-            })
         }
 
+
+        
     }
+
+    
 
     // This function will aim to create a div that contains all todos
     //based on the button that is clicked
    function createProjDiv(){
-        parentProject.allProjectsArr.forEach(item => {
-            let projDiv = document.createElement("div"); 
-            projDiv.id = item.name;
-            projDiv.className = "projDiv";
-            projDiv.innerHTML = item.name;
-            document.body.appendChild(projDiv);
+        // parentProject.allProjectsArr.forEach(item => {
+        //     let projDiv = document.createElement("div"); 
+        //     projDiv.id = item.name;
+        //     projDiv.className = "projDiv";
+        //     projDiv.innerHTML = item.name;
+        //     projDiv.style.display = "none";
+        //     document.body.appendChild(projDiv);
             
-        })
+        // })
+
+        let projectsArr = parentProject.allProjectsArr;
+        let todoDiv = document.getElementById("todoContainer");
+        //NOTE: Get the div THEN APPEND ALL PROJ DIVS TO THIS ONE
+        //Steps needed
+        // Create btns
+        //Iterate through the project arr to get project's name
+        
+        //Iterate through all the project names and create a div
+        for (let i = 0; i < projectsArr.length; i++){
+            let projDiv = document.createElement("div"); 
+            projDiv.id = projectsArr[i].name;
+            projDiv.className = "projDiv";
+            projDiv.innerHTML = projectsArr[i].name;
+            projDiv.style.display = "none";
+
+            if (i == 0){
+                projDiv.style.display = "block";
+            }
+
+            todoDiv.appendChild(projDiv);     
+        }
    }
    //Testing button toggle based on project divs
    function projBtnToggle(){
@@ -212,7 +222,6 @@ let siteLogic = () => {
 
     return {
         displayProjBtn: displayProjBtn,
-        btnToggle:btnToggle,
         createProjDiv:createProjDiv,
         projBtnToggle:projBtnToggle,
 
