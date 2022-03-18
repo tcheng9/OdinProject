@@ -142,7 +142,7 @@ let siteLogic = () => {
         //Iterate through the project arr to get project's name
     
         //Iterate through all the project names and create a div
-        console.log('inner');
+        
         parentProject.allProjectsArr.forEach(number => {
             //This is to go through and get each project's name and append it to the div container
             let divHolder = document.createElement("div");
@@ -181,18 +181,48 @@ let siteLogic = () => {
 
     // This function will aim to create a div that contains all todos
     //based on the button that is clicked
-    function displayTodos
+   function createProjDiv(){
+        parentProject.allProjectsArr.forEach(item => {
+            let projDiv = document.createElement("div"); 
+            projDiv.id = item.name;
+            projDiv.className = "projDiv";
+            projDiv.innerHTML = item.name;
+            document.body.appendChild(projDiv);
+            
+        })
+   }
+   //Testing button toggle based on project divs
+   function projBtnToggle(){
+        let projDivs = document.getElementsByClassName("projDiv");
+        let btns = document.getElementsByClassName("button");
+
+        for (var i = 0; i < btns.length; i++){
+            let temp = projDivs[i];
+            btns[i].addEventListener("click", function(){
+                if (temp.style.display != "none"){
+                    temp.style.display = "none";
+                    console.log("running inside");
+                } else {
+                    temp.style.display = "block";
+                    console.log("running inside");
+                }
+            })
+        }
+    }
 
     return {
         displayProjBtn: displayProjBtn,
         btnToggle:btnToggle,
+        createProjDiv:createProjDiv,
+        projBtnToggle:projBtnToggle,
 
     }
 }
 
 let site = siteLogic();
 site.displayProjBtn();
-site.btnToggle();
+site.createProjDiv();
+site.projBtnToggle();
 
 // Next steps:
 // 1. For each project, create a div w/ that class name so there will be divs unique to each project
