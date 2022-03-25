@@ -21,24 +21,24 @@ const todoFactory = (title, desc, dueDate, priority, notes, completedStatus) => 
 //i.e 
 
 const project = (name, completedStatus) => {
-    let todoArray = [];
+    let todoList = [];
     
     //Add an item to the existing list
     function addItem(todoItem){
-        todoArray.push(todoItem);
+        todoList.push(todoItem);
     }
     
     //Print out the list to check what is contained inside the project factory function
     function getList(){
-        for (let i = 0; i < todoArray.length; i++){
-            console.log(todoArray[i]);
+        for (let i = 0; i < todoList.length; i++){
+            console.log(todoList[i]);
         }
     }
     return {
         
         addItem: addItem,
         getList: getList,
-        todoArray:todoArray,
+        todoList:todoList,
         name: name,
         completedStatus:completedStatus, 
     }
@@ -48,7 +48,7 @@ const project = (name, completedStatus) => {
 let todo1 = todoFactory("task1");
 let todo2 = todoFactory("task2");
 let list1 = todoFactory("test1", "this is a test for 1");
-let project1 = project();
+let project1 = project("proj1");
 
 
 //Add an item to the parent project
@@ -191,7 +191,7 @@ let siteLogic = () => {
             let projDiv = document.createElement("div"); 
             projDiv.id = projectsArr[i].name;
             projDiv.className = "projDiv";
-            projDiv.innerHTML = projectsArr[i].name;
+            
             projDiv.style.display = "none";
 
             if (i == 0){
@@ -220,11 +220,49 @@ let siteLogic = () => {
         }
     }
 
+    //This function should:
+    //1. Find the approrpriate div
+    //2. Find the corresponding proj
+    //3. Append all todo list items to it
+
+    //Solution steps:
+    //1. Search for the matching project based on ID
+    //2 For each proj, get the corresponding project name
+    //3. For each div with the right ID (temp variable)
+    //4. Append that all to do items to that div
+    //5. Update div and append iteratively
+    function listContents(allProjectsList){
+        //Project1 iterating through all to dos
+        
+        
+        //Loop through the all projects name
+        for (var i = 0; i < allProjectsList.allProjectsArr.length; i++){
+            
+            let currentProj = allProjectsList.allProjectsArr[0];
+            let currentDiv = document.getElementById(currentProj.name);
+            console.log("proj" + currentProj.name);
+            //For each proj, iterate through it's todo list
+            for (var i = 0; i < currentProj.todoList.length; i++){
+                console.log(currentProj.todoList[i].getTitle);
+                let pDiv = document.createElement('p');
+                
+                currentDiv.appendChild(pDiv);
+                pDiv.textContent = currentProj.todoList[i].getTitle;
+                pDiv.class = "task";
+            }
+
+            
+        }
+        
+     
+
+    }
+
     return {
         displayProjBtn: displayProjBtn,
         createProjDiv:createProjDiv,
         projBtnToggle:projBtnToggle,
-
+        listContents:listContents,
     }
 }
 
@@ -232,6 +270,7 @@ let site = siteLogic();
 site.displayProjBtn();
 site.createProjDiv();
 site.projBtnToggle();
+site.listContents(parentProject);
 
 // Next steps:
 // 1. For each project, create a div w/ that class name so there will be divs unique to each project
