@@ -56,12 +56,10 @@ project1.addItem(todo1);
 project1.addItem(todo2);
 project1.addItem(list1);
 
-//Print the list backout to check if it's working
-//console.log(project1);
-// console.log(project1.todoArray[0].getTitle);
-// console.log(project1);
-
-// console.log("break");
+//Creating a second project w/ todos
+let project2 = project("prj2");
+let proj2todo = todoFactory("item1");
+project2.addItem(proj2todo);
 
 //Parent container to contain and eventually display all projects
 const allProjects = () => {
@@ -82,7 +80,7 @@ const allProjects = () => {
     }
 }
 
-let project2 = project("prj2");
+
 let project3 = project("proj3");
 
 let parentProject = allProjects();
@@ -238,26 +236,34 @@ let siteLogic = () => {
         //Loop through the all projects name
         for (var i = 0; i < allProjectsList.allProjectsArr.length; i++){
             
-            let currentProj = allProjectsList.allProjectsArr[0];
+            let currentProj = allProjectsList.allProjectsArr[i];
             let currentDiv = document.getElementById(currentProj.name);
-            console.log("proj" + currentProj.name);
+            console.log(currentProj);
+           
             //For each proj, iterate through it's todo list
-            for (var i = 0; i < currentProj.todoList.length; i++){
-                console.log(currentProj.todoList[i].getTitle);
+            for (var j = 0; j < currentProj.todoList.length; j++){
+                console.log(currentProj.todoList[j].getTitle);
                 let pDiv = document.createElement('p');
                 
                 currentDiv.appendChild(pDiv);
-                pDiv.textContent = currentProj.todoList[i].getTitle;
-                pDiv.class = "task";
+                pDiv.textContent = currentProj.todoList[j].getTitle;
+                pDiv.className = "task";
+
+                let pBtn = document.createElement("button");
+                pBtn.innerHTML = "test";
+                pBtn.className = "testBtn";
+                currentDiv.appendChild(pBtn);
             }
 
             
         }
-        
-     
-
+    
     }
-
+    //This function takes in all projects and for each project's todo:
+    //Craft a unique to do
+    function todoListPopup(allProjectsList){
+        
+    }
     return {
         displayProjBtn: displayProjBtn,
         createProjDiv:createProjDiv,
