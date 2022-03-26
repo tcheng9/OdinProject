@@ -3,9 +3,12 @@
 //ANSWER: todo item I think. -> Make multiple in a todo 
 const todoFactory = (title, desc, dueDate, priority, notes, completedStatus) => {
     
+    function getTitle(title){
+        return title;
+    }
 
     return {
-        getTitle: title,
+        getTitle: getTitle,
         getDesc : desc,
         getDueDate:dueDate,
         getPriority: priority, 
@@ -45,9 +48,9 @@ const project = (name, completedStatus) => {
 }
 //Initial variables to check
 //Initializing to do items and the parent project factory
-let todo1 = todoFactory("task1");
-let todo2 = todoFactory("task2");
-let list1 = todoFactory("test1", "this is a test for 1");
+let todo1 = todoFactory("task1", "desc1", 'dueDate1', 'prio1');
+let todo2 = todoFactory("task2", 'desc2', 'dueDate2', 'prio2');
+let list1 = todoFactory("task3", "tdesc3", 'prio3');
 let project1 = project("proj1");
 
 
@@ -259,16 +262,95 @@ let siteLogic = () => {
         }
     
     }
+    //Test function: i want to create a div with all the info from a specific todo list item
+    function createDivForPopUp(todolist){
+        let todoItemDiv = document.createElement("div");
+        let currentP = document.getElementById("")
+    }
     //This function takes in all projects and for each project's todo:
     //Craft a unique to do
+    
     function todoListPopup(allProjectsList){
+        for (var i = 0; i < allProjectsList.allProjectsArr.length; i++){
+            let currentProj = allProjectsList.allProjectsArr[i];
+            let currentDiv = document.body;
+            let todoDiv = document.createElement("div");
+            todoDiv.className = "todoPopup";
+            for (j = 0; j < currentProj.todoList.length; j++){
+
+                
+                let todoText = document.createElement('p');
+                //How to convert getTitle to somesort of node that can be appended?
+                //GOAL: I want to create a div or something with all the todo propreties
+                // todoText.innerHTML += currentProj.todoList[j].getTitle;
+                // todoText.innerHTML += currentProj.todoList[j].getDesc;
+                
+                
+                todoText = currentProj.getTitle();
+
+                todoDiv.appendChild(todoText);
+                currentDiv.appendChild(todoDiv);
+                //todoText.appendChild(currentTodo);
+                console.log(j);
+                
+                //LEFT OFF HERE:
+                /*
+                Created an inidividual div for each todo. 
+                From here, I shoud link it to my buttons. 
+                When the buttons are clicked, their corresponding
+                todolist should pop up with ALL of their info. duedate, 
+                title, name, prio, etc.
+                */
+            }
+            
+        }
+    }
+
+    //Button to create a new project
+    function createProject(){
+        //Create a button 
+        let btn = document.createElement("button");
+        //Append it to HTML div buttons
         
+        /////---
+
+        btn.addEventListener("click", function() {
+            //Open up a form to get info
+        }
+        //Button on click will open up a form to get info
+
+        //Form creates a project
+
+        //Project gets displayed as a button to click on 
+
+        //Clicking on project button oopens the todo list
+    }
+
+    function createAddProj(){
+
+    }
+
+    function onClickForm(){
+
+    }
+
+    function createProj(){
+
+    }
+
+    function displayProj(){
+
+    }
+
+    function displayTodos(){
+
     }
     return {
         displayProjBtn: displayProjBtn,
         createProjDiv:createProjDiv,
         projBtnToggle:projBtnToggle,
         listContents:listContents,
+        todoListPopup:todoListPopup,
     }
 }
 
@@ -277,6 +359,11 @@ site.displayProjBtn();
 site.createProjDiv();
 site.projBtnToggle();
 site.listContents(parentProject);
+site.todoListPopup(parentProject);
+
+function togglePopup(){
+    document.getElementById("popup-1").classList.toggle("active");
+}
 
 // Next steps:
 // 1. For each project, create a div w/ that class name so there will be divs unique to each project
