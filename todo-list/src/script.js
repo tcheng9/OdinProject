@@ -3,12 +3,10 @@
 //ANSWER: todo item I think. -> Make multiple in a todo 
 const todoFactory = (title, desc, dueDate, priority, notes, completedStatus) => {
     
-    function getTitle(title){
-        return title;
-    }
+    
 
     return {
-        getTitle: getTitle,
+        getTitle: title,
         getDesc : desc,
         getDueDate:dueDate,
         getPriority: priority, 
@@ -286,12 +284,12 @@ let siteLogic = () => {
                 // todoText.innerHTML += currentProj.todoList[j].getDesc;
                 
                 
-                todoText = currentProj.getTitle();
+                // todoText = currentProj.getTitle;
 
-                todoDiv.appendChild(todoText);
-                currentDiv.appendChild(todoDiv);
-                //todoText.appendChild(currentTodo);
-                console.log(j);
+                // todoDiv.appendChild(todoText);
+                // currentDiv.appendChild(todoDiv);
+                
+                // console.log(j);
                 
                 //LEFT OFF HERE:
                 /*
@@ -310,13 +308,16 @@ let siteLogic = () => {
     function createProject(){
         //Create a button 
         let btn = document.createElement("button");
+        btn.innerHTML = "test";
+        btn.className = "testBtn";
         //Append it to HTML div buttons
+        let targetDiv = document.getElementById("projectContainer");
+        targetDiv.appendChild(btn);
         
-        /////---
-
-        btn.addEventListener("click", function() {
-            //Open up a form to get info
-        }
+        
+        // btn.addEventListener("click", function() {
+        //     //Open up a form to get info
+        // }
         //Button on click will open up a form to get info
 
         //Form creates a project
@@ -326,6 +327,7 @@ let siteLogic = () => {
         //Clicking on project button oopens the todo list
     }
 
+    createProject();
     function createAddProj(){
 
     }
