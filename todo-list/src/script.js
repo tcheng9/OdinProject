@@ -157,10 +157,7 @@ let siteLogic = () => {
     
             
             containerDiv.appendChild(divHolder);
-        }
-
-
-        
+        }        
     }
 
     
@@ -304,55 +301,137 @@ let siteLogic = () => {
         }
     }
 
-    //Button to create a new project
-    function createProject(){
+    function createTitleDiv(){
+        let targetDiv = document.getElementById("projectContainer");
+        let titleDiv = document.createElement("div");
+        titleDiv.innerText = "Projects";
+        titleDiv.id = "titleDiv";
+        document.body.appendChild(titleDiv);
+        
+    }
+    createTitleDiv();
+
+    //Button to create a new project with its functionality
+    function createNewProj(){
         //Create a button 
         let btn = document.createElement("button");
+        btn.id = 
         btn.innerHTML = "test";
         btn.className = "testBtn";
         //Append it to HTML div buttons
-        let targetDiv = document.getElementById("projectContainer");
+
+        let targetDiv = document.getElementById("titleDiv");
         targetDiv.appendChild(btn);
+
+        
+        //Show form
+        btn.addEventListener("click", function(){
+            document.querySelector(".bg-modal").style.display = "flex";
+        });
+
+        //Close button
+
+        document.querySelector(".close").addEventListener("click", 
+        function(){
+            document.querySelector('.bg-modal').style.display = "none";
+        })
+
+        //Submit form data
+        
+        const form = document.querySelectorAll(".form");
+        submitInput = form[0].querySelector('input[type = "submit"]');
+
+        function getDataForm(e){
+            e.preventDefault();
+            var formData = new FormData(form[0]);
+
+           
+            const projName = formData.get('name');
+            let newProj = project(projName);
+            parentProject.appendProject(newProj);
+            console.log(parentProject);
+
+            newProjBtn(newProj);
+           
+            document.querySelector('.bg-modal').style.display = "none";
+        }
+        
+      
+        document.addEventListener('DOMContentLoaded', function(){
+            submitInput.addEventListener('click', getDataForm, false);
+        }, false);
+
+    }
+
+    createNewProj();
+
+    //New function to create a new project button
+    // and give its corrsponding div and clickevent BASED ON project inputed
+
+    function newProjBtn(project){
+        let containerDiv = document.getElementById("projectContainer");
+        
+        //Creating a div for the button
+        let divHolder = document.createElement("div");
+        divHolder.id = "gridSq";
+        divHolder.className = "square";
+
+        //Creating a button
+        let btn = document.createElement("button");
+        btn.innerHTML = project.name;
+        btn.id = "gridBtn";
+        btn.className = "button";
+        
+
+        //Function to toggle
+        
+        divHolder.appendChild(btn);
+        
+        containerDiv.appendChild(divHolder);
+
+        
+        //Function to create a new project div
+
+        let todoDiv = document.getElementById("todoContainer");
+        let projDiv = document.createElement("div"); 
+        projDiv.id = project.name;
+        projDiv.className = "projDiv";    
+        projDiv.style.display = "none";
+        todoDiv.appendChild(projDiv);    
+
+        let temp = document.getElementById(project.name);
+        temp.style.display = "none";
+        //Function to toggle
+        
+        btn.addEventListener("click", function (){
+            if (temp.style.display != "none"){
+            temp.style.display = "none";
+            console.log("running inside");
+        } else {
+            temp.style.display = "block";
+            console.log("running inside");
+        }
+        })
         
         
-        // btn.addEventListener("click", function() {
-        //     //Open up a form to get info
-        // }
-        //Button on click will open up a form to get info
 
-        //Form creates a project
-
-        //Project gets displayed as a button to click on 
-
-        //Clicking on project button oopens the todo list
-    }
-
-    createProject();
-    function createAddProj(){
 
     }
 
-    function onClickForm(){
+    //Mini-functinality:
+    //Add a project test btn to each proj
+    //
 
-    }
 
-    function createProj(){
 
-    }
-
-    function displayProj(){
-
-    }
-
-    function displayTodos(){
-
-    }
     return {
         displayProjBtn: displayProjBtn,
         createProjDiv:createProjDiv,
         projBtnToggle:projBtnToggle,
         listContents:listContents,
         todoListPopup:todoListPopup,
+        createTitleDiv:createTitleDiv,
+        
     }
 }
 
