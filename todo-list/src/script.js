@@ -215,16 +215,12 @@ let siteLogic = () => {
                 pDiv.textContent = currentProj.todoList[j].getTitle;
                 pDiv.className = "task";
 
-                // let btn = document.createElement("button");
-                // btn.id = "test";
-                // btn.innerHTML = "Add a new task";
-                // currentDiv.appendChild(btn);
+                
+                
             }
 
-            let btn = document.createElement("button");
-            btn.id = "addTask";
-            btn.innerHTML = "Add a new task";
-            // currentDiv.appendChild(btn);
+            
+            //Function that creats new task button + it's functionality
             addTodoBtnHelper(currentProj);
             
         }
@@ -232,7 +228,7 @@ let siteLogic = () => {
     }
     
     //This function takes in all projects and for each project's todo:
-    //Craft a unique to do
+    
     
     function todoListPopup(allProjectsList){
         for (var i = 0; i < allProjectsList.allProjectsArr.length; i++){
@@ -244,27 +240,7 @@ let siteLogic = () => {
 
                 
                 let todoText = document.createElement('p');
-                //How to convert getTitle to somesort of node that can be appended?
-                //GOAL: I want to create a div or something with all the todo propreties
-                // todoText.innerHTML += currentProj.todoList[j].getTitle;
-                // todoText.innerHTML += currentProj.todoList[j].getDesc;
                 
-                
-                // todoText = currentProj.getTitle;
-
-                // todoDiv.appendChild(todoText);
-                // currentDiv.appendChild(todoDiv);
-                
-                // console.log(j);
-                
-                //LEFT OFF HERE:
-                /*
-                Created an inidividual div for each todo. 
-                From here, I shoud link it to my buttons. 
-                When the buttons are clicked, their corresponding
-                todolist should pop up with ALL of their info. duedate, 
-                title, name, prio, etc.
-                */
             }
             
         }
@@ -294,19 +270,19 @@ let siteLogic = () => {
         targetDiv.appendChild(btn);
 
         
-        //Show form
+        //Show form for new project form
         btn.addEventListener("click", function(){
             document.querySelector(".bg-modal").style.display = "flex";
         });
 
-        //Close button
+        //Close button for new project form
 
         document.querySelector(".close").addEventListener("click", 
         function(){
             document.querySelector('.bg-modal').style.display = "none";
         })
 
-        //Submit form data
+        //Submit form data for new project
         
         const form = document.querySelectorAll(".form");
         submitInput = form[0].querySelector('input[type = "submit"]');
@@ -319,15 +295,16 @@ let siteLogic = () => {
             const projName = formData.get('name');
             let newProj = project(projName);
             parentProject.appendProject(newProj);
-            console.log(parentProject);
+            
 
             newProjBtn(newProj);
             addTodoBtnHelper(newProj);
+            addNewTodo(newProj);
             document.querySelector('.bg-modal').style.display = "none";
         }
         
       
-        document.addEventListener('DOMContentLoaded', function(){
+        document.addEventListener('click', function(){
             submitInput.addEventListener('click', getDataForm, false);
         }, false);
 
@@ -376,10 +353,10 @@ let siteLogic = () => {
         btn.addEventListener("click", function (){
             if (temp.style.display != "none"){
             temp.style.display = "none";
-            console.log("running inside");
+           
         } else {
             temp.style.display = "block";
-            console.log("running inside");
+            
         }
         })
         
@@ -390,105 +367,103 @@ let siteLogic = () => {
 
 
     /////////////////////////////
-    //Function to create new todos
-
+    
     //Standalone function to create a new button for a specific div based on div id
-    function addTodoBtnHelper(project){
-        let newBtn = document.createElement("button");
-        let projDiv = document.getElementById(project.name);
-
-     
-        newBtn.innerHTML = "Add a new task";
-        newBtn.id = "addTask";
-        newBtn.addEventListener("click", createNewTodoFunctionality(newBtn, project))
-
-        projDiv.appendChild(newBtn);
-        
-    }
-
-
-
-    //Function for Add todo items modal -> Used within btn.addEventListener()
-    function createNewTodoFunctionality(btn, project){
-        //No need for a button as one already exists 
-         //Show form
-         btn.addEventListener("click", function(){
-            document.querySelector(".todo-modal").style.display = "flex";
-        });
-
-        //Close button
-
-        document.querySelector(".todo-close").addEventListener("click", 
-        function(){
-            document.querySelector('.todo-modal').style.display = "none";
-        })
-
-        //Function to take in modal form data
-        const todoForm = document.querySelectorAll(".todo-form");
-        let todoSubmitInput = todoForm[0].querySelector('input[type = "submit"]');
-
-        function getTodoForm(e){
-            //Prevent default submit function from working
-            e.preventDefault();
-
-            //Some sort of trick I found online to hold the form data
-            var todoFormTemp = new FormData(todoForm[0]);
-
-            //Getting the individual form values
-            const todoTitle = todoFormTemp.get("title");
-            const todoDesc = todoFormTemp.get("desc");
-            const todoDueDate = todoFormTemp.get("dueDate");
-            const todoPriority = todoFormTemp.get("priority");
-            const todoNotes = todoFormTemp.get("notes");
-            const todoCompletedStatus = todoFormTemp.get("completedStatus");
-           
-            //Fromm this form data, create a new todo and append it to the current project'
-            let newTodoTask = todoFactory(todoTitle, todoDesc, 
-                                            todoDueDate, todoPriority,
-                                            todoNotes, todoCompletedStatus                                  
-                                        );
+        //Standalone function to create a new button for a specific div based on div id
+        function addTodoBtnHelper(project){
+            let newBtn = document.createElement("button");
+            let projDiv = document.getElementById(project.name);
+    
+         
+            newBtn.innerHTML = "Add a new task";
+            newBtn.id = "addTask" + String(project.name);
+            //This event listener adds functionality to the buttons.
+            newBtn.addEventListener("click", createNewTodoFunctionality(newBtn, project))
+            projDiv.appendChild(newBtn);
             
-            project.addItem(newTodoTask);
-            console.log("project info");
-            console.log(project);
+        }
+    
+        //Function for Add todo items modal -> Used within btn.addEventListener()
+        function createNewTodoFunctionality(btn, project){
+            //No need for a button as one already exists 
+             //Show form
+             btn.addEventListener("click", function(){
+                document.querySelector(".todo-modal").style.display = "flex";
+            });
+    
+            //Close button
+    
+            document.querySelector(".todo-close").addEventListener("click", 
+            function(){
+                document.querySelector('.todo-modal').style.display = "none";
+            })
+            console.log("sadmalmsd");
+            console.log(btn.className);
+            console.log(btn.id);
+            //Function to take in modal form data
+            const todoForm = document.querySelectorAll(".todo-form");
+            let todoSubmitInput = todoForm[0].querySelector('input[type = "submit"]');
+            let todoSubmit = document.getElementById("testSubmit");
+            // var todoFormTemp = new FormData(todoForm[0]);
 
-            //Add this new form data to the new div
-            let newDiv = document.createElement("p");
-            newDiv.class = "task";
-            newDiv.innerHTML = todoTitle;
-///I think each task can be given a CSS styling via JS
-            let currentDiv = document.getElementById(project.name)
-            currentDiv.appendChild(newDiv);
+            // //Getting the individual form values
+            // const todoTitle = todoFormTemp.get("title");
+            // const todoDesc = todoFormTemp.get("desc");
+            // const todoDueDate = todoFormTemp.get("dueDate");
+            // const todoPriority = todoFormTemp.get("priority");
+            // const todoNotes = todoFormTemp.get("notes");
+            // const todoCompletedStatus = todoFormTemp.get("completedStatus");
             
-            // return{
-            //     todoTitle,
-            //     todoDesc,
-            //     todoDueDate,
-            //     todoPriority,
-            //     todoNotes,
-            //     todoCompletedStatus,
-            // }
+            // console.log(todoTitle);
+
+            // let todoItem = todoFactory(todoTitle, todoDesc,todoDueDate, todoPriority, todoNotes, todoCompletedStatus);
+            // project.addItem(todoFactory);
+            // console.log(todoNotes);
+            // //Submit button's event listener
+            // todoSubmit.addEventListener("click", function(e){
+            //     e.preventDefault();
+            //     console.log(project.name);
+            //     if (todoNotes == String(project.name)){
+            //         console.log("correct");
+            //     }
+
+            // })
+            let currentProject = document.getElementById(project.name); 
+            let newDiv = document.createElement("div");
+            newDiv.id = "newDivTest";
+            todoSubmit.addEventListener("click", function(e){
+                // todoSubmitInput.addEventListener("click", getTodoForm, false);
+                e.preventDefault();
+                
+
+                //Get current project div
+                var todoFormTemp = new FormData(todoForm[0]);
+
+                //Getting the individual form values
+                const todoTitle = todoFormTemp.get("title");
+                const todoDesc = todoFormTemp.get("desc");
+                const todoDueDate = todoFormTemp.get("dueDate");
+                const todoPriority = todoFormTemp.get("priority");
+                const todoNotes = todoFormTemp.get("notes");
+                const todoCompletedStatus = todoFormTemp.get("completedStatus");
             
-            //Hide div after submit is clicked
-            document.querySelector('.todo-modal').style.display = "none";
+                newDiv.innerText = todoTitle;
+                currentProject.appendChild(newDiv);
+
+                if (todoTitle == currentProject.name){
+                    console.log("true");
+                }
+
+            }, false);
+
+    
+        }
+    
+        function addTodoToDiv(project){
             
         }
 
-        document.addEventListener("DOMContentLoaded", function(){
-            todoSubmitInput.addEventListener("click", getTodoForm, false);
-        }, false);
-
-       
-
-    }
-
-    // console.log(todoTitle);
-    //////////
-    //For each task add a click event
-    //REFLECTION: I don't think I need to get the user input from modals. 
-    //I already have 
-
-
+    //Maybe a way for each project to loop through and have a submit
     return {
         displayProjBtn: displayProjBtn,
         createProjDiv:createProjDiv,
@@ -508,10 +483,13 @@ site.projBtnToggle();
 site.listContents(parentProject);
 site.todoListPopup(parentProject);
 
-function togglePopup(){
-    document.getElementById("popup-1").classList.toggle("active");
-}
 
-// Next steps:
-// 1. For each project, create a div w/ that class name so there will be divs unique to each project
-// 2. Turn to do  lists into an html list
+//Next steps (3/28/22):
+//How do I get the "add new task" button to only append to a specific div
+
+//3/30/22:
+//I have to redo the project I think. 
+//I built this project on a for loop so anytime I want to add something, it will affect all projects
+//In retrospect, I should have individual functions that build up certain parts or functions
+//As a result, I don't think I can get any further with this project based on using iterators
+//Due to me needing to add a task to specific project BUT any time I hit submit, it will add to all projects
