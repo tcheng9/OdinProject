@@ -94,43 +94,11 @@ console.log("foreach function");
 
 //PROBLEM FOR LATER: Maybe this should be inside a "build logic/board factory function"
 
-// function displayProjBtn() {
-//     let containerDiv = document.getElementById("projectContainer");
-   
-//     //Steps needed
-//     // Create btns
-//     //Iterate through the project arr to get project's name
-
-//     //Iterate through all the project names and create a div
-//     parentProject.allProjectsArr.forEach(number => {
-//         //This is to go through and get each project's name and append it to the div container
-//         let divHolder = document.createElement("div");
-//         divHolder.id = "gridSq";
-//         divHolder.className = "square";
-
-//         let btn = document.createElement("button");
-//         btn.innerHTML = number.name;
-//         btn.id = "gridBtn";
-//         divHolder.appendChild(btn);
-
-        
-//         containerDiv.appendChild(divHolder);
-
-//         //Let's try to add a button within this div
-
-        
-//     });
-
-//     //Create a btn within each div
 
 
-// }
 
 
-// Next step: Each button should open/hide another box of text
-// WHICH will represent the todolists that open up when a project is clicked
-
-
+//Factory function for all of the site's logic and functionality
 
 let siteLogic = () => {
     function displayProjBtn() {
@@ -247,21 +215,22 @@ let siteLogic = () => {
                 pDiv.textContent = currentProj.todoList[j].getTitle;
                 pDiv.className = "task";
 
-                let pBtn = document.createElement("button");
-                pBtn.innerHTML = "test";
-                pBtn.className = "testBtn";
-                currentDiv.appendChild(pBtn);
+                // let btn = document.createElement("button");
+                // btn.id = "test";
+                // btn.innerHTML = "Add a new task";
+                // currentDiv.appendChild(btn);
             }
 
+            let btn = document.createElement("button");
+            btn.id = "addTask";
+            btn.innerHTML = "Add a new task";
+            // currentDiv.appendChild(btn);
+            addTodoBtnHelper(currentProj);
             
         }
     
     }
-    //Test function: i want to create a div with all the info from a specific todo list item
-    function createDivForPopUp(todolist){
-        let todoItemDiv = document.createElement("div");
-        let currentP = document.getElementById("")
-    }
+    
     //This function takes in all projects and for each project's todo:
     //Craft a unique to do
     
@@ -312,6 +281,7 @@ let siteLogic = () => {
     createTitleDiv();
 
     //Button to create a new project with its functionality
+
     function createNewProj(){
         //Create a button 
         let btn = document.createElement("button");
@@ -352,7 +322,7 @@ let siteLogic = () => {
             console.log(parentProject);
 
             newProjBtn(newProj);
-           
+            addTodoBtnHelper(newProj);
             document.querySelector('.bg-modal').style.display = "none";
         }
         
@@ -418,10 +388,88 @@ let siteLogic = () => {
 
     }
 
-    //Mini-functinality:
-    //Add a project test btn to each proj
-    //
 
+    /////////////////////////////
+    //Function to create new todos
+
+    //Standalone function to create a new button for a specific div based on div id
+    function addTodoBtnHelper(project){
+        let newBtn = document.createElement("button");
+        let projDiv = document.getElementById(project.name);
+
+     
+        newBtn.innerHTML = "Add a new task";
+        newBtn.id = "addTask";
+        newBtn.addEventListener("click", createNewTodoFunctionality(newBtn))
+
+        projDiv.appendChild(newBtn);
+        
+    }
+
+
+
+    //Function for Add todo items modal -> Used within btn.addEventListener()
+    function createNewTodoFunctionality(btn){
+        //No need for a button as one already exists 
+         //Show form
+         btn.addEventListener("click", function(){
+            document.querySelector(".todo-modal").style.display = "flex";
+        });
+
+        //Close button
+
+        document.querySelector(".todo-close").addEventListener("click", 
+        function(){
+            document.querySelector('.todo-modal').style.display = "none";
+        })
+
+        //Function to take in modal form data
+        const todoForm = document.querySelectorAll(".todo-form");
+        let todoSubmitInput = todoForm[0].querySelector('input[type = "submit"]');
+
+        function getTodoForm(e){
+            //Prevent default submit function from working
+            e.preventDefault();
+
+            //Some sort of trick I found online to hold the form data
+            var todoFormTemp = new FormData(todoForm[0]);
+
+            //Getting the individual form values
+            const todoTitle = todoFormTemp.get("title");
+            const todoDesc = todoFormTemp.get("desc");
+            const todoDueDate = todoFormTemp.get("dueDate");
+            const todoPriority = todoFormTemp.get("priority");
+            const todoNotes = todoFormTemp.get("notes");
+            const todoCompletedStatus = todoFormTemp.get("completedStatus");
+           
+            //Fromm this form data, create a new todo and append it to the current project'
+            let newTodoTask = todoFactory(todoTitle, todoDesc, 
+                                            todoDueDate, todoPriority,
+                                            todoNotes, todoCompletedStatus                                  
+                                        );
+            console.log(todoTitle);
+
+
+            //Add this new form data to the new div
+            let newDiv = document.createElement("p");
+            newDiv.class = "test";
+            
+            
+
+
+            //Hide div after submit is clicked
+            document.querySelector('.todo-modal').style.display = "none";
+        }
+
+
+        
+        document.addEventListener("DOMContentLoaded", function(){
+            todoSubmitInput.addEventListener("click", getTodoForm, false);
+        }, false);
+
+    }
+
+  
 
 
     return {
@@ -431,6 +479,7 @@ let siteLogic = () => {
         listContents:listContents,
         todoListPopup:todoListPopup,
         createTitleDiv:createTitleDiv,
+        
         
     }
 }
