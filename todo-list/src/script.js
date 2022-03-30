@@ -400,7 +400,7 @@ let siteLogic = () => {
      
         newBtn.innerHTML = "Add a new task";
         newBtn.id = "addTask";
-        newBtn.addEventListener("click", createNewTodoFunctionality(newBtn))
+        newBtn.addEventListener("click", createNewTodoFunctionality(newBtn, project))
 
         projDiv.appendChild(newBtn);
         
@@ -409,7 +409,7 @@ let siteLogic = () => {
 
 
     //Function for Add todo items modal -> Used within btn.addEventListener()
-    function createNewTodoFunctionality(btn){
+    function createNewTodoFunctionality(btn, project){
         //No need for a button as one already exists 
          //Show form
          btn.addEventListener("click", function(){
@@ -447,29 +447,46 @@ let siteLogic = () => {
                                             todoDueDate, todoPriority,
                                             todoNotes, todoCompletedStatus                                  
                                         );
-            console.log(todoTitle);
-
+            
+            project.addItem(newTodoTask);
+            console.log("project info");
+            console.log(project);
 
             //Add this new form data to the new div
             let newDiv = document.createElement("p");
-            newDiv.class = "test";
+            newDiv.class = "task";
+            newDiv.innerHTML = todoTitle;
+///I think each task can be given a CSS styling via JS
+            let currentDiv = document.getElementById(project.name)
+            currentDiv.appendChild(newDiv);
             
+            // return{
+            //     todoTitle,
+            //     todoDesc,
+            //     todoDueDate,
+            //     todoPriority,
+            //     todoNotes,
+            //     todoCompletedStatus,
+            // }
             
-
-
             //Hide div after submit is clicked
             document.querySelector('.todo-modal').style.display = "none";
+            
         }
 
-
-        
         document.addEventListener("DOMContentLoaded", function(){
             todoSubmitInput.addEventListener("click", getTodoForm, false);
         }, false);
 
+       
+
     }
 
-  
+    // console.log(todoTitle);
+    //////////
+    //For each task add a click event
+    //REFLECTION: I don't think I need to get the user input from modals. 
+    //I already have 
 
 
     return {
