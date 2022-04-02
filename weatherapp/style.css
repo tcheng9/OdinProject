@@ -1,0 +1,37 @@
+/* 
+CSS styling
+1.Created a div to center the div in the center
+2. Clouds background -> Sky
+3. Limit form to just 
+
+
+
+
+*/
+
+.body{
+    background-image: url('clouds.jfif');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+.textBox{
+    display:flex;    
+    align-items:center;
+    justify-content: center;
+    position:fixed;
+    height:100%;
+    width:100%;
+
+}
+
+.textBox2{
+    display:flex;
+    border:5px solid darkblue;
+    width:300px;
+    height:300px;
+    align-items:center;
+    justify-content: center;
+    flex-direction:column;
+}
