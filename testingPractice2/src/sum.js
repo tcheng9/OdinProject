@@ -107,10 +107,14 @@ const caesarCipher = ((string, increment) => {
     }
   }
 
-  function convertString(){   
+  function convertString(string){   
+    let strIndex = 0;
     for (let i =0 ;i < string.length; i++) {
+      let currentLetter = string[i];
       if (isUpperCase(string[i]) == true){
         //Convert uppcase string to uppercase letter
+        
+        
       } else {
         //convert lowercase string to lowercase letter
       }
@@ -124,3 +128,15 @@ const caesarCipher = ((string, increment) => {
 })();
 
 //Stopped here: How to increment letter in an automatic way?
+
+//Codepen code for loooping through the array
+// arr = [0,1,2,3,4,5];
+// let j =0;
+// for (let i = 0 ; i < 10; i++){
+  
+//   if ( j > 5){
+//     j = 0;
+//   }
+//   console.log(arr[j]);
+//   j++
+// }
