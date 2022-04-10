@@ -53,15 +53,6 @@ module.exports.calculator = calculator;
 
 //Function caesarCipher -> take a string and shift the characters
 /*
-Notes:
-1. Get int value of a letter
-2. Int value add 1 
-3. Int value -> letter
-
-Z -> A conversion: if this specific conversion, convert to A
-
-QUESTION: How to account for int value of capitals and lowercase
-for "z" and "Z", look for uppercase/lowercase "z' and hardset it
 
 //Code for turning letter into ascii values
 //From Letter to Int
@@ -69,21 +60,6 @@ s.charCodeAt(0) - 97; //Get int at string index 0
 
 //Converting from int to letter
 String.fromCharCode(97 + n); //n is the amount to add to get the letter you want
-
-
-//Potential solution 1
-1.Loop through string
-2.Check if string if uppcase or lowercase
-3a. If uppercase, do necessary conversions
-3b. if lowercase, do necssary conversions
-4. append to returnStr
-5. Finish loop and return string
-
-
-//Note: it's not just Z -> A, I need to loop around -> set a boundary, if value + increment > 25, set to 0 then add or something
-Site for calculating caesarcipher: 
-http://practicalcryptography.com/ciphers/caesar-cipher/
-
 
 Key parts:
 1. Check for upper/lowercase
@@ -107,36 +83,88 @@ const caesarCipher = ((string, increment) => {
     }
   }
 
-  function convertString(string){   
-    let strIndex = 0;
-    for (let i =0 ;i < string.length; i++) {
+  function convertString(string, increment){   
+    increment = 5;
+    let returnStr = ""; 
+    for (let i = 0 ;i < string.length; i++) {
       let currentLetter = string[i];
       if (isUpperCase(string[i]) == true){
-        //Convert uppcase string to uppercase letter
-        
+        let returnLtr = currentLetter.charCodeAt(0) - 65;
+        let newLtr = String.fromCharCode(returnLtr + 65 + increment);
+        returnStr += newLtr
+  //       //Convert uppcase string to uppercase letter
+  //       s.charCodeAt(0) - 97; //Get int at string index 0
+
+  // //Converting from int to letter
+  // String.fromCharCode(97 + n); //n is the amount to add to get the letter you want
+
         
       } else {
         //convert lowercase string to lowercase letter
+        let returnLtr = currentLetter.charCodeAt(0) - 97;
+        let newLtr = String.fromCharCode(returnLtr + 97 + increment);
+        returnStr += newLtr
       }
     }
+
+    return returnStr;
   } 
-
-  function incrementer(){
-
+  return {
+    convertString,
   }
-
 })();
 
-//Stopped here: How to increment letter in an automatic way?
+module.exports.caesarCipher = caesarCipher;
 
-//Codepen code for loooping through the array
-// arr = [0,1,2,3,4,5];
-// let j =0;
-// for (let i = 0 ; i < 10; i++){
-  
-//   if ( j > 5){
-//     j = 0;
-//   }
-//   console.log(arr[j]);
-//   j++
-// }
+
+///////analyzeArray function
+const analyzeArray = ((array) => {
+  function avg(array){
+    let avg = 0;
+    let sum = 0;
+    for (let i =0 ;i < array.length; i++){
+      sum += array[i];
+    }
+
+    avg = sum / array.length;
+    return avg;
+  }
+
+  function min(array){
+    let min = array[0];
+    for (let i =0 ;i < array.length; i++){
+      if (min > array[i]){
+        min = array[i];
+      }
+    }
+
+    return min;
+  }
+
+  function max(array){
+    let max = array[0];
+    for (let i =0 ;i < array.length; i++){
+      if (max < array[i]){
+        max = array[i];
+      }
+    }
+
+    return max;
+  }
+
+  function length(array){
+    return array.length;
+  }
+
+  return {
+    avg,
+    min,
+    max,
+    length
+  }
+})();
+
+module.exports.analyzeArray = analyzeArray;
+
+//REFLECTION: Should have included edge cases for these things
+//i.e catching strings when trying to find an avg

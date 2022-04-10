@@ -23,7 +23,7 @@ test("capitalize the first letter of a string", () => {
 test("reverse a string", () => {
   expect(reverseString("Alphabet")).toBe("tebahplA");
 })
-
+////////////////////////////////////////////////////////////////////
 //Write a calculator object that can handle add, subtract, divide, multiply
 //FIRST: figure out how to write a object that will have these functions
 //AND how to call it
@@ -49,8 +49,40 @@ test("divide value", () => {
   expect(calculator.divide(4, 2)).toBe(2);
 })
 
-//Caesarcipher 
+////////////////////////////////////////////////////////////////////
 
+//Caesarcipher 
+var caesarCipher = require('./sum').caesarCipher;
 test("caesarcipher", () => {
-  expect(caesarCipher("abc", 11)).toBe("lmn")
+  expect(caesarCipher.convertString("abc", 5)).toBe("fgh")
+})
+
+//Caesar cipher for capital letters
+test("caesarcipherCapitals", () => {
+  expect(caesarCipher.convertString("ABC", 5)).toBe("FGH")
+})
+
+
+////////////////////////////////////////////////////////////////////
+const analyzeArray = require('./sum').analyzeArray;
+
+//analyzeArray - avg
+test("average", () => {
+  expect(analyzeArray.avg([1,2,3,4,5])).toBe(3);
+});
+
+//analyzeArray - min
+
+test("min", () => {
+  expect(analyzeArray.min([1,2,3,4,5])).toBe(1);
+});
+
+//analyzeArray - max
+test("max", () => {
+  expect(analyzeArray.max([5,6,7,8,9])).toBe(9);
+})
+
+//analyzeArray - length
+test("length", () => {
+  expect(analyzeArray.length([5,6,7,8,9])).toBe(5);
 })
