@@ -4,6 +4,8 @@
 //   }
 //   module.exports = sum;
 
+
+
   /*
   Ship factory function:
     1. Ship object includes
@@ -20,40 +22,66 @@
 
 const ship = (() => {
     let length = 0;
-    let arrayPositions = [];
+    let shipCoordinates = [];
     // let sunk = false;
 
     //Function for determining positions
-    function addPosition(x,y){
-        let position = [x,y]
+    function addCoordinates(x,y){
+        let coordinates = [x,y];
 
-        arrayPositions.push(position);
-        return arrayPositions
+        shipCoordinates.push(coordinates);
+        return shipCoordinates
     }
 
+    //function to return a ship's coordinates
+    function getCoordinates(){
+        return shipCoordinates;
+    }
     //Function for calculating if it's been hit
     function isHit(x,y){
-        for (let i = 0; i < length; i++){
-            let shipX = arrayPositions[i][0];
-            let shipY = arrayPositions[i][1];
+        length = shipCoordinates.length;
+        for (let i = 0; i <= length; i++){
+            let shipX = shipCoordinates[i][0];
+            let shipY = shipCoordinates[i][1];
             
-            if (shipX == x && shipY == y){
-                return true;
-            } else {
-                return false;
+            if (shipX == 'hit' && shipY == 'hit'){
+                return 'already hit';
             }
+            
+            
+            //If the input locations matches a ship's location, change the values to hit
+            if (shipX == x && shipY == y){
+                shipCoordinates[i][0] = 'hit';
+                shipCoordinates[i][1] = 'hit';
+                return 'hit';
+            }
+            
         }
+
+        return 'no hit';
     }
     //Function for calculating if it's sunk
     function isSunk(){
-        return true
+        length = shipCoordinates.length;
+        
+        for (let i = 0; i < length; i++){
+            let shipX = shipCoordinates[i][0];
+             let shipY = shipCoordinates[i][1];
+
+            if (shipX != 'hit' && shipY != 'hit'){
+                return 'not sunk';
+            }
+        }
+
+        return 'sunk';
     }
-    //
+   
     
     return {
         length,
-        arrayPositions,
-        addPosition,
+        shipCoordinates,
+        addCoordinates,
+        getCoordinates,
         isHit,
         isSunk,
     }
@@ -91,17 +119,45 @@ Gameboard factory:
     4. Game should be able to report whether or not all ships have been sunk for a player
 */
 
-// const gameboard = ({
-//     //Function that places ships at specific coordinates
+const gameboard = ((ship) => {
+    let coordinates = [];
+    let ships = [];
+    let coordinatesTracker = [];
+    //Function that adds a ship to the ships
+    function addShip(ship){
+        ships.push(ship);
+    }
 
-//     //Function that receiveAttack()
+    //Function that places ships at specific coordinates
+    function returnCoordinates(ships){
+        for (let i = 0; i < ships.length; i++){
+            ships[i].getCoordinates();
+        }
+    }
+    //Function that receiveAttack()
+    function receiveAttack(x,y){
+        let newCoordinates = [x,y];
+        coordinates.push(newCoordinates);
+        return coordinates;
+    }
 
-//     //Function that tracks missed shots or hit shots
+    //Function that tracks missed shots or hit shots
+    function addToTracker(x,y){
+        let newCoordinates = [x,y];
+        coordinatesTracker.push(newCoordinates);
+        return coordinatesTracker;
+    }
+    //Function that reports if all ships for a player is sunk or not
+    return{
+        receiveAttack,
+        addShip,
+        returnCoordinates,
+        coordinatesTracker,
+        addToTracker,
+    }
+})();
 
-//     //Function that reports if all ships for a player is sunk or not
-// })();
-
-
+module.exports.gameboard = gameboard;
 ////////////////////////////////////////////////////////////////////
 //Player function that should be a repeatable function
 
@@ -166,5 +222,19 @@ Main game loop:
 
 
 Question: where does a computer's attacks logic go?
+
+Gameboard VS. Gameloop??
+
+Gameboard:
+1. should place specific ships at specific coordinates by calling the ship factory function
+2, receiveAttack function
+3. Track missed attacks so they can be properly displayed
+
+Gameloop:
+1. Creates UI
+2. should setup players and gameboard and ships
+3. HTML implementation to display both player's boards
+4. game loop should go turn by turn based on other objects. No functions inside the game loop for this
+5. Create a condition that once all ships have been sunk, the game should end and declare a winner
 */
 
