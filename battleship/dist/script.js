@@ -242,8 +242,8 @@ const gameLogic = (() => {
     //Function 4Check if all of a player's ship is sunk, if so, declare that player the winner    
     
     //Creating a board function (not sure if this should be unique to individual or what)
-    function createBoard() {
-        let currentGrid = document.getElementById("grid");
+    function createBoard(parentID) {
+        let currentGrid = document.getElementById(parentID);
         let lenX = 10;
         let lenY = 10;
 
@@ -264,7 +264,9 @@ const gameLogic = (() => {
 
 })();
 
-//gameLogic.createBoard();
+gameLogic.createBoard("grid1");
+gameLogic.createBoard('grid2');
+
 /*
 Building gameloop requirements/steps:
 1. Build HTML board
