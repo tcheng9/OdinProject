@@ -1,5 +1,11 @@
-#grid{
+#grid1{
     display:grid;
     grid-template-columns: repeat(10, 50px);
     grid-template-rows: repeat(10, 50px);
-}
+};
+
+#grid2{
+    display:grid;
+    grid-template-columns: repeat(10, 50px);
+    grid-template-rows: repeat(10, 50px);
+};

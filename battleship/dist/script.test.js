@@ -68,7 +68,7 @@ var player = require('./script').createPlayer;
 test("Add a ship to a player", () => {
   let ship1 = ship;
   let ship2 = ship;
-  let player1 = player
+  let player1 = player;
   player1.addShip(ship1);
   player1.addShip(ship2);
 
