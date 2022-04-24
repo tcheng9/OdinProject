@@ -87,7 +87,7 @@ const ship = (() => {
     }
 })();
 
-module.exports.ship = ship;
+//module.exports.ship = ship;
 
 //Mock testing ideas for ship()
 /*
@@ -138,6 +138,7 @@ const gameboard = ((ship) => {
     function receiveAttack(x,y){
         let newCoordinates = [x,y];
         coordinates.push(newCoordinates);
+        ship.isHit(x,y);
         return coordinates;
     }
 
@@ -148,6 +149,22 @@ const gameboard = ((ship) => {
         return coordinatesTracker;
     }
     //Function that reports if all ships for a player is sunk or not
+    //This function tracks the 2 player's shipyards. If all of one's player's ships are sunk then the other player wins
+    //NEEEEEEEEEEEED TO WORK ON THIS ONE
+    function shipStatuses(shipyard1,shipyard2){
+        //
+        let player1 = shipyard1;
+        let player2 = shipyard2;
+
+        /*
+            if player1's shipyard is all sunk,
+            then show that player losing
+
+            if player2's shipyard is sunk, 
+            then show that player losing
+        */
+    }
+    
     return{
         receiveAttack,
         addShip,
@@ -157,28 +174,63 @@ const gameboard = ((ship) => {
     }
 })();
 
-module.exports.gameboard = gameboard;
+//module.exports.gameboard = gameboard;
 ////////////////////////////////////////////////////////////////////
 //Player function that should be a repeatable function
 
-function createPlayer(x,y,z){
+function createPlayer(){
     //Functions needed in createPlayer();
     /*
         1. Function that holds an array of it's ships?
         2. "computer" player should make random moves.
 
     */
+   let name = '';
+   let shipyard = [];
+   let recordedMoves = [];
+
+   function addPlayerName(nameInput){
+        name = nameInput;
+   }
+   function addShip(ship){
+    shipyard.push(ship);
+   }
+   
+   //Add a function that checks if all the ships in a player's shipyard is sunk
+
+   //Function to control if it's a player
+   function computerMoves(){
+    /*If the player is registed as a computer,
+        make a random move for x and y within the length of the array
+
+        Note: check if move is already made in the array
+    */
+        let lenX = 10;
+        let randX = Math.random() * lenX;
+        randX = Math.floor(randY);
+
+
+        let lenY = 10;
+        let randY = Math.random() * lenY;
+        randY = Math.floor(randY);
+
+
+        return [randX, randY];
+   }
     return {
-        x,
-        y,
-        z
+        addShip,
+        computerMoves,
+        name,
+        addPlayerName,
+        recordedMoves
     }
 }
 
+//module.exports.createPlayer = createPlayer;
 ////////////////////////////////////////////////////////////////////
 //Function / thoughts on how will game function work and use other functions
 
-function gameLogic(){
+const gameLogic = (() => {
     //Should interact with HTML/CSS as well as internal JS
 
     //Function 1: Should introduce taking turns with each player
@@ -188,53 +240,48 @@ function gameLogic(){
     //Function 3: function that takes in user's input to attack the opponent's ship
 
     //Function 4Check if all of a player's ship is sunk, if so, declare that player the winner    
+    
+    //Creating a board function (not sure if this should be unique to individual or what)
+    function createBoard() {
+        let currentGrid = document.getElementById("grid");
+        let lenX = 10;
+        let lenY = 10;
 
+        for (let i = 0; i < lenX; i++){
+            for (let j = 0; j < lenY; j++){
+                let cell = document.createElement("div");
+                cell.class = "cell";
+                cell.id = `${i}` + `${j}`
+                cell.innerHTML = "test";
+                currentGrid.appendChild(cell);
+            }
+        }
+        }
 
-}
+    return {
+        createBoard,
+    }
 
-//////////////////////////////////////////////////////////////////////////
-//Summary of functions each function needs
+})();
+
+//gameLogic.createBoard();
+/*
+Building gameloop requirements/steps:
+1. Build HTML board
+2. On one side, display my actual board, on the other side, display a CPU board
+    a. This is what I need to focus on as I'm most confused about this
+3. Logic to let player's click on the board and send coordinates
+4. Logic to decide winner
+5. Logic to let player decide where their ships go
+6. Button to start game
+7. Opponent's board + play button on top of each other,
+    opponent's board is transparent until game starts
+*/
 
 /*
-Ship: 
-    - Length
-    - some way to track if the ship has been hit and keep it as such
-    - Whether the ship is sunk or not
-    - hit() function to take in hits and mark it as hit
-    - isSunk() to track if all positions are hit or not
-Question: how to track hits?
--Array that has coordinates BUT if hit, turn that coordinate to "x" or "hit" or some sort of hit marker
+Steps for creating a grid/gameboard
+1. Make a parent div
+2. create a square var
 
-Gameboad:
-    - receiveAttack() -> take in attack, check if any ships are at that position, mark it as hit or not hit if there is/isn't a ship
-    - tracker of all attacks made
-    - track if all ships of a player is sunk -> declare winner if so
-
-Player:
-    - Let each player takes turns
-    - Computer needs to make random moves
-
-Main game loop:
-    - Builds battleship HTML / builds the board
-    - setup players and ships on the board
-    - Logic to take in user's inputs for making an attack
-    - Logic to take turn
-
-
-Question: where does a computer's attacks logic go?
-
-Gameboard VS. Gameloop??
-
-Gameboard:
-1. should place specific ships at specific coordinates by calling the ship factory function
-2, receiveAttack function
-3. Track missed attacks so they can be properly displayed
-
-Gameloop:
-1. Creates UI
-2. should setup players and gameboard and ships
-3. HTML implementation to display both player's boards
-4. game loop should go turn by turn based on other objects. No functions inside the game loop for this
-5. Create a condition that once all ships have been sunk, the game should end and declare a winner
 */
 

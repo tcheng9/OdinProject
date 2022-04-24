@@ -38,25 +38,39 @@ test("is the ship sunk?", () => {
 
 
 ////////////////////////////////////////////////
-var gameboard = require('./script').gameboard;
-//Test for gameboard
+// //Gameboard testing
+// var gameboard = require('./script').gameboard;
+// //Test for gameboard
 
-//Test adding a ship to the board
-test('Adding a new ship', () => {
+// //Test adding a ship to the board
+// test('Adding a new ship', () => {
 
+// });
+
+
+// //recceiving an attack from the user
+// //Note: Need to adjust with ships
+// //Question: what do I want to do when I get a hit?
+// test('Receiving an attack', () => {
+
+// });
+
+// //tracking all shots
+// test("Tracking all shots made", () => {
+
+// });
+
+
+////////////////////////////////////////////////
+//Creating players
+var player = require('./script').createPlayer;
+
+test("Add a ship to a player", () => {
+  let ship1 = ship;
+  let ship2 = ship;
+  let player1 = player
+  player1.addShip(ship1);
+  player1.addShip(ship2);
+
+  expect(player1.shipyard[0]).toEqual([[0,0],[1,1],[2,2]])
 });
-
-
-//recceiving an attack from the user
-//Note: Need to adjust with ships
-//Question: what do I want to do when I get a hit?
-test('Receiving an attack', () => {
-
-});
-
-//tracking all shots
-test("Tracking all shots made", () => {
-
-});
-
-

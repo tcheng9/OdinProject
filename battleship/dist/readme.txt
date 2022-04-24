@@ -123,3 +123,69 @@ Mocks needed:
 1. Mocks help test what you expect to get in each part of a process flow
     a. need to have pretty clear steps between calling objects to use in other objects.
     b. Don't necessarily need to test internals
+
+
+-----------
+4-22-22
+
+//////////////////////////////////////////////////////////////////////////
+//Summary of functions each function needs
+
+/*
+Ship: 
+    - Length
+    - some way to track if the ship has been hit and keep it as such
+    - Whether the ship is sunk or not
+    - hit() function to take in hits and mark it as hit
+    - isSunk() to track if all positions are hit or not
+Question: how to track hits?
+-Array that has coordinates BUT if hit, turn that coordinate to "x" or "hit" or some sort of hit marker
+
+Gameboad:
+    - receiveAttack() -> take in attack, check if any ships are at that position, mark it as hit or not hit if there is/isn't a ship
+    - tracker of all attacks made
+    - track if all ships of a player is sunk -> declare winner if so
+
+Player:
+    - Let each player takes turns
+    - Computer needs to make random moves
+
+Main game loop:
+    - Builds battleship HTML / builds the board
+    - setup players and ships on the board
+    - Logic to take in user's inputs for making an attack
+    - Logic to take turn
+
+
+Question: where does a computer's attacks logic go?
+
+Gameboard VS. Gameloop??
+
+Gameboard:
+1. should place specific ships at specific coordinates by calling the ship factory function
+2, receiveAttack function
+3. Track missed attacks so they can be properly displayed
+
+Gameloop:
+1. Creates UI
+2. should setup players and gameboard and ships
+3. HTML implementation to display both player's boards
+4. game loop should go turn by turn based on other objects. No functions inside the game loop for this
+5. Create a condition that once all ships have been sunk, the game should end and declare a winner
+*/
+
+
+//Gameloop needs:
+/*
+    Questions: 
+    1. How should the gameboards be displayed?
+        ANSWER: player 1's board is seen. Player 2's board is invisible. 
+        When you click on player 2's board, it registers as a move u want to make
+    2. How to let players pick their ship locations?
+        ANSWER: Have preset ships, let users drag and drop them to where they want them to be
+    3. Marking hits:
+        ANSWER: When you get a hit, it turns into an "X" and when you miss it turns into a "O"
+    4. How to connect HTML to gameboard() function?
+    5. Should gameboard create HTML?
+//Note: Maybe gameboard should have a hits and missed array to match to logos
+*/
