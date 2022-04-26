@@ -6,6 +6,7 @@
 
 
 
+
   /*
   Ship factory function:
     1. Ship object includes
@@ -251,21 +252,55 @@ const gameLogic = (() => {
             for (let j = 0; j < lenY; j++){
                 let cell = document.createElement("div");
                 cell.class = "cell";
-                cell.id = `${i}` + `${j}` + `${parentId}`
+                cell.id = `${i}` + `${j}` + `${parentID}`
                 cell.innerHTML = "test";
+                
+                //Css style of cells
+
+                cell.style.border = 'solid black 1px';
+                
+                cell.addEventListener('click', () => {
+                    console.log(`${i}` + `${j}` + `${parentID}`);
+                })
                 currentGrid.appendChild(cell);
             }
         }
         }
+    
+    
+    function createStartBtn(parentID){
+        let btn = document. createElement("button");
+        btn.innerHTML = "Start Game";
+        btn.class = "startBtn";
+        btn.style.position = "absolute";
+        btn.style.top = "23%";
+        btn.style.left = "65%";
+        
+       
+        //Eventlistener to start game + change oopacity of grid2
+        btn.addEventListener('click', (e) => {
+            let cpuGrid = document.getElementById('grid2');
+            cpuGrid.style.opacity = 1;
+            btn.style.opacity = 0;
+            console.log("pressed");
+        });
 
-    return {
-        createBoard,
+        document.body.append(btn);
+        
+
+
+
     }
+    return { 
+        createBoard,
+        createStartBtn,
+    }  
 
 })();
 
 gameLogic.createBoard("grid1");
 gameLogic.createBoard('grid2');
+gameLogic.createStartBtn('grid2');
 
 /*
 Building gameloop requirements/steps:
@@ -286,4 +321,3 @@ Steps for creating a grid/gameboard
 2. create a square var
 
 */
-

@@ -2,16 +2,27 @@
     display:grid;
     grid-template-columns: repeat(10, 50px);
     grid-template-rows: repeat(10, 50px);
+    /* Positioning the grid*/
     position:absolute;
     top:25%;
     left:25%;
+    
 }
+
+ 
 
 #grid2{
     display:grid;
     grid-template-columns: repeat(10, 50px);
     grid-template-rows: repeat(10, 50px);
+    /* Positionin the grids */
     position: absolute;
     top:25%;
     left: 65%;
+    opacity: .3;
+}
+
+
+#startBtn {
+    opacity: 1;
 }
