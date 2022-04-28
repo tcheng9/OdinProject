@@ -26,3 +26,8 @@
 #startBtn {
     opacity: 1;
 }
+
+/* Drag and drop testing */
+.cell{
+    position:relative;
+}

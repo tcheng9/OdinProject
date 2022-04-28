@@ -251,7 +251,7 @@ const gameLogic = (() => {
         for (let i = 0; i < lenX; i++){
             for (let j = 0; j < lenY; j++){
                 let cell = document.createElement("div");
-                cell.class = "cell";
+                cell.className = "cell";
                 cell.id = `${i}` + `${j}` + `${parentID}`
                 cell.innerHTML = "test";
                 
@@ -271,7 +271,7 @@ const gameLogic = (() => {
     function createStartBtn(parentID){
         let btn = document. createElement("button");
         btn.innerHTML = "Start Game";
-        btn.class = "startBtn";
+        btn.className = "startBtn";
         btn.style.position = "absolute";
         btn.style.top = "23%";
         btn.style.left = "65%";
@@ -321,3 +321,45 @@ Steps for creating a grid/gameboard
 2. create a square var
 
 */
+
+//Testing drag and drop element
+
+// Make the DIV element draggable:
+//make the test draggable
+document.getElementById("test").setAttribute("draggable", true);
+
+//now what should happen when the test square is dragged
+document.getElementById("test").addEventListener("dragstart", movingCell);
+
+function movingCell(event){
+    event.dataTransfer.setData("text", event.target.id);
+}
+
+//2nd, make all squares "droppable"
+var cellsDroppable = document.getElementsByClassName("cell");
+
+
+for (let i = 0; i< cellsDroppable.length; i++){
+    cellsDroppable[i].addEventListener("dragover", allowDrop);
+}
+
+function allowDrop(event){
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
+    console.log('allowdrop');
+};
+
+//3rd drop, let all squares ondrop to get draggable elements
+
+for (let i = 0; i < cellsDroppable.length; i++){
+    cellsDroppable[i].addEventListener("drop", drop);
+}
+
+function drop(ev){
+    ev.preventDefault();
+
+    var data = ev.dataTransfer.getData("text");
+
+    ev.target.appendChild(document.getElementById(data));
+
+}
