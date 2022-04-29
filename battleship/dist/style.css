@@ -6,7 +6,6 @@
     position:absolute;
     top:25%;
     left:25%;
-    
 }
 
  
@@ -30,4 +29,34 @@
 /* Drag and drop testing */
 .cell{
     position:relative;
+}
+
+#ship1{
+    height: 150px;
+  width: 50px;
+  background-color: #555;
+}
+
+#ship2{
+    height: 250px;
+  width: 50px;
+  background-color: #555;
+}
+
+#ship3{
+    height: 50px;
+  width: 200px;
+  background-color: #555;
+}
+
+#ship4{
+    height: 50px;
+  width: 150px;
+  background-color: #555;
+}
+
+#ship5{
+    height: 50px;
+  width: 100px;
+  background-color: #555;
 }

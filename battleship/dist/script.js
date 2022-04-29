@@ -24,14 +24,71 @@
 const ship = (() => {
     let length = 0;
     let shipCoordinates = [];
-    // let sunk = false;
+    let isHorizontal = false;
+
+    //function for creating ship and giving its functionality
+    function createShip(divID, length){
+        let shipDiv = document.createElement("div");
+        shipDiv.id = "ship";
+        shipDiv.style.position = 'relative';
+        let shipLength = length * 50;
+        shipDiv.style.height = `${shipLength}` + 'px';
+        shipDiv.style.width = '50px';
+        shipDiv.innerHTML = "test";
+        shipDiv.style.backgroundColor = '#555';
+        document.body.appendChild(shipDiv);
+
+        //Function to alternate if the ship is horizontal or not
+        function isHorizontal();
+
+
+        // Make the DIV element draggable:
+        shipDiv.setAttribute("draggable", true);
+        
+        //now what should happen when the test square is dragged
+        shipDiv.addEventListener("dragstart", movingCell);
+
+        function movingCell(event){
+            event.dataTransfer.setData(shipDiv, event.target.id);
+        }
+
+        //2nd, make all squares "droppable"
+        var cellsDroppable = document.getElementsByClassName("cell");
+
+
+        for (let i = 0; i< cellsDroppable.length; i++){
+            cellsDroppable[i].addEventListener("dragover", allowDrop);
+        }
+
+        function allowDrop(event){
+            event.preventDefault();
+            event.dataTransfer.dropEffect = "move";
+            console.log('allowdrop');
+        };
+
+        //3rd drop, let all squares ondrop to get draggable elements
+
+        for (let i = 0; i < cellsDroppable.length; i++){
+            cellsDroppable[i].addEventListener("drop", drop);
+        }
+
+        function drop(ev){
+            ev.preventDefault();
+
+           
+            ev.target.appendChild(shipDiv);
+            console.log(ev.target.id);
+
+        }
+
+    }
 
     //Function for determining positions
     function addCoordinates(x,y){
         let coordinates = [x,y];
 
         shipCoordinates.push(coordinates);
-        return shipCoordinates
+        return shipCoordinates;
     }
 
     //function to return a ship's coordinates
@@ -85,8 +142,10 @@ const ship = (() => {
         getCoordinates,
         isHit,
         isSunk,
+        createShip,
     }
 })();
+
 
 //module.exports.ship = ship;
 
@@ -253,7 +312,7 @@ const gameLogic = (() => {
                 let cell = document.createElement("div");
                 cell.className = "cell";
                 cell.id = `${i}` + `${j}` + `${parentID}`
-                cell.innerHTML = "test";
+                cell.innerHTML = "";
                 
                 //Css style of cells
 
@@ -301,7 +360,7 @@ const gameLogic = (() => {
 gameLogic.createBoard("grid1");
 gameLogic.createBoard('grid2');
 gameLogic.createStartBtn('grid2');
-
+ship.createShip('testDiv',3);
 /*
 Building gameloop requirements/steps:
 1. Build HTML board
@@ -321,45 +380,3 @@ Steps for creating a grid/gameboard
 2. create a square var
 
 */
-
-//Testing drag and drop element
-
-// Make the DIV element draggable:
-//make the test draggable
-document.getElementById("test").setAttribute("draggable", true);
-
-//now what should happen when the test square is dragged
-document.getElementById("test").addEventListener("dragstart", movingCell);
-
-function movingCell(event){
-    event.dataTransfer.setData("text", event.target.id);
-}
-
-//2nd, make all squares "droppable"
-var cellsDroppable = document.getElementsByClassName("cell");
-
-
-for (let i = 0; i< cellsDroppable.length; i++){
-    cellsDroppable[i].addEventListener("dragover", allowDrop);
-}
-
-function allowDrop(event){
-    event.preventDefault();
-    event.dataTransfer.dropEffect = "move";
-    console.log('allowdrop');
-};
-
-//3rd drop, let all squares ondrop to get draggable elements
-
-for (let i = 0; i < cellsDroppable.length; i++){
-    cellsDroppable[i].addEventListener("drop", drop);
-}
-
-function drop(ev){
-    ev.preventDefault();
-
-    var data = ev.dataTransfer.getData("text");
-
-    ev.target.appendChild(document.getElementById(data));
-
-}
