@@ -22,13 +22,14 @@
         a. calculate it  based on their length and whether all of their positons are 'hit'
 */
 
-const ship = (() => {
+var ship = (() => {
     let length = 0;
     let shipCoordinates = [];
     let isHorizontal = false;
 
     //function for creating ship and giving its functionality
     function createShip(divID, length, text, horizontal){
+        shipCoordinates = [];
         let shipDiv = document.createElement("div");
         shipDiv.id = divID;
         //shipDiv.style.position = 'relative';
@@ -90,22 +91,47 @@ const ship = (() => {
             
             var data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
+            let targetX = ev.target.id[0];
+            let targetY = ev.target.id[1];
+
+            addCoordinates(targetX,targetY,isHorizontal, length);
+            getCoordinates();
         }
     }
     
+    
 
     //Function for determining positions
-    function addCoordinates(x,y){
-        let coordinates = [x,y];
+    function addCoordinates(x,y, isHorizontal, length){
+        let arr =[];
+        x = parseInt(x);
+        y = parseInt(y);
+        if (isHorizontal == true){
+            for (let i = 0; i < length; i++){
+                arr = [x,y];
+                shipCoordinates.push(arr);
+                x = x + 1;
+            }
+        } else {
+            //is horizontal == false
+            for (let i = 0; i < length; i++){
+                arr = [x,y];
+                shipCoordinates.push(arr);
+                y = y + 1;
+            } 
+        }
 
-        shipCoordinates.push(coordinates);
+
+        
         return shipCoordinates;
     }
 
     //function to return a ship's coordinates
     function getCoordinates(){
+        console.log(shipCoordinates); 
         return shipCoordinates;
     }
+
     //Function for calculating if it's been hit
     function isHit(x,y){
         length = shipCoordinates.length;
@@ -369,13 +395,14 @@ const gameLogic = (() => {
 
 })();
 
-createBoard("grid1");
-createBoard('grid2');
-createStartBtn('grid2');
-ship.createShip('testDiv',3, "text1", true);
-ship.createShip('asdakdmaslksdnsak',2, "text2", false);
-
-
+gameLogic.createBoard("grid1");
+gameLogic.createBoard('grid2');
+gameLogic.createStartBtn('grid2');
+let ship1 = ship.createShip('ship1',3, "text1", true);
+let ship2 = ship.createShip('ship2',5, "text2", false);
+let ship3 = ship.createShip('ship3',3, "text1", true);
+let ship4 = ship.createShip('ship4',4, "text2", true);
+ship1.returnCoordinates();
 
 // gameLogic.createBoard("grid1");
 // gameLogic.createBoard('grid2');
