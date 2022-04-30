@@ -7,6 +7,7 @@
 
 
 
+
   /*
   Ship factory function:
     1. Ship object includes
@@ -27,21 +28,35 @@ const ship = (() => {
     let isHorizontal = false;
 
     //function for creating ship and giving its functionality
-    function createShip(divID, length){
+    function createShip(divID, length, text, horizontal){
         let shipDiv = document.createElement("div");
-        shipDiv.id = "ship";
-        shipDiv.style.position = 'relative';
+        shipDiv.id = divID;
+        //shipDiv.style.position = 'relative';
         let shipLength = length * 50;
-        shipDiv.style.height = `${shipLength}` + 'px';
-        shipDiv.style.width = '50px';
-        shipDiv.innerHTML = "test";
+        // shipDiv.style.height = `${shipLength}` + 'px';
+        // shipDiv.style.width = '50px';
+        shipDiv.innerHTML = text;
         shipDiv.style.backgroundColor = '#555';
+        shipDiv.top = 0;
+        shipDiv.left = 0;
         document.body.appendChild(shipDiv);
 
+        swapOrientation(length, horizontal);        
         //Function to alternate if the ship is horizontal or not
-        function isHorizontal();
-
-
+        function swapOrientation(length, isHorizontal){
+            if (isHorizontal == true){
+                let shipLength = length * 50;
+                shipDiv.style.height = '50px';
+                shipDiv.style.width = `${shipLength}` + 'px';
+                
+            } else {
+                //If isHorizontal == false
+                let shipLength = length * 50;
+                shipDiv.style.height = `${shipLength}` + 'px';
+                shipDiv.style.width = '50px';
+            }
+        }
+        
         // Make the DIV element draggable:
         shipDiv.setAttribute("draggable", true);
         
@@ -49,12 +64,11 @@ const ship = (() => {
         shipDiv.addEventListener("dragstart", movingCell);
 
         function movingCell(event){
-            event.dataTransfer.setData(shipDiv, event.target.id);
+            event.dataTransfer.setData("text", event.target.id);
         }
 
         //2nd, make all squares "droppable"
         var cellsDroppable = document.getElementsByClassName("cell");
-
 
         for (let i = 0; i< cellsDroppable.length; i++){
             cellsDroppable[i].addEventListener("dragover", allowDrop);
@@ -62,8 +76,7 @@ const ship = (() => {
 
         function allowDrop(event){
             event.preventDefault();
-            event.dataTransfer.dropEffect = "move";
-            console.log('allowdrop');
+    
         };
 
         //3rd drop, let all squares ondrop to get draggable elements
@@ -71,17 +84,15 @@ const ship = (() => {
         for (let i = 0; i < cellsDroppable.length; i++){
             cellsDroppable[i].addEventListener("drop", drop);
         }
-
+       
         function drop(ev){
             ev.preventDefault();
-
-           
-            ev.target.appendChild(shipDiv);
-            console.log(ev.target.id);
-
+            
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
         }
-
     }
+    
 
     //Function for determining positions
     function addCoordinates(x,y){
@@ -143,6 +154,7 @@ const ship = (() => {
         isHit,
         isSunk,
         createShip,
+        
     }
 })();
 
@@ -360,7 +372,9 @@ const gameLogic = (() => {
 gameLogic.createBoard("grid1");
 gameLogic.createBoard('grid2');
 gameLogic.createStartBtn('grid2');
-ship.createShip('testDiv',3);
+ship.createShip('testDiv',3, "text1", true);
+ship.createShip('asdakdmaslksdnsak',2, "text2", false);
+
 /*
 Building gameloop requirements/steps:
 1. Build HTML board
@@ -380,3 +394,57 @@ Steps for creating a grid/gameboard
 2. create a square var
 
 */
+
+
+// function createShip(divID, length, text){
+//     let shipDiv = document.createElement("div");
+//     shipDiv.id = divID;
+//     shipDiv.style.position = 'absolute';
+//     let shipLength = length * 50;
+//     shipDiv.style.height = `${shipLength}` + 'px';
+//     shipDiv.style.width = '50px';
+//     shipDiv.innerHTML = text;
+//     shipDiv.style.backgroundColor = '#555';
+//     document.body.appendChild(shipDiv);
+
+//     //Function to alternate if the ship is horizontal or not
+    
+//     // Make the DIV element draggable:
+//     shipDiv.setAttribute("draggable", true);
+    
+//     //now what should happen when the test square is dragged
+//     shipDiv.addEventListener("dragstart", movingCell);
+
+//     function movingCell(event){
+//         event.dataTransfer.setData(document.getElementById(divID), event.target.id);
+//     }
+
+//     //2nd, make all squares "droppable"
+//     var cellsDroppable = document.getElementsByClassName("cell");
+
+//     for (let i = 0; i< cellsDroppable.length; i++){
+//         cellsDroppable[i].addEventListener("dragover", allowDrop);
+//     }
+
+//     function allowDrop(event){
+//         event.preventDefault();
+//         event.dataTransfer.dropEffect = "move";
+        
+//     };
+
+//     //3rd drop, let all squares ondrop to get draggable elements
+
+//     for (let i = 0; i < cellsDroppable.length; i++){
+//         cellsDroppable[i].addEventListener("drop", drop);
+//     }
+   
+//     function drop(ev){
+//         ev.preventDefault();
+//         var data = ev.dataTransfer.getData("text");
+//         ev.target.appendChild(document.getElementById(data));
+        
+//     }
+// }
+
+// createShip(1,2,"test");
+// createShip(2,4,"test2");
