@@ -369,11 +369,19 @@ const gameLogic = (() => {
 
 })();
 
-gameLogic.createBoard("grid1");
-gameLogic.createBoard('grid2');
-gameLogic.createStartBtn('grid2');
+createBoard("grid1");
+createBoard('grid2');
+createStartBtn('grid2');
 ship.createShip('testDiv',3, "text1", true);
 ship.createShip('asdakdmaslksdnsak',2, "text2", false);
+
+
+
+// gameLogic.createBoard("grid1");
+// gameLogic.createBoard('grid2');
+// gameLogic.createStartBtn('grid2');
+// ship.createShip('testDiv',3, "text1", true);
+// ship.createShip('asdakdmaslksdnsak',2, "text2", false);
 
 /*
 Building gameloop requirements/steps:
