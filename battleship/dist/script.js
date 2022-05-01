@@ -85,27 +85,17 @@ const ship = {
             cellsDroppable[i].addEventListener("drop", drop);
         }
         
-
-
         function drop(ev){
             ev.preventDefault();
             
             var data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
-            let targetX = ev.target.id[0];
-            let targetY = ev.target.id[1];
-            
-          
             ////
             //Function to track coordinates and move them to new location
-            
-            
         }
         
         return shipCoordinates;
     },
-    
-    
 
     //Function for determining positions
     addCoordinates(x,y, isHorizontal, length){
@@ -129,9 +119,18 @@ const ship = {
         return shipCoordinates;
     },
 
+    testAddCoordinates(x,y){
+        shipCoordinates.push(x);
+        shipCoordinates.push(y);
+       
+    },
+
+    testGetCoordinates(){
+        console.log(shipCoordinates);
+        return shipCoordinates;
+    },
     //function to return a ship's coordinates
     getCoordinates(){
-        console.log(shipCoordinates); 
         return shipCoordinates;
     },
 
@@ -191,22 +190,6 @@ const ship = {
 
 //module.exports.ship = ship;
 
-//Mock testing ideas for ship()
-/*
-    write a test that (1)takes in coordinates , 
-    - Takes in coordinate
-    - Appends them to coordinatesArray
-    -returns array to be used for later game logic as needed
-
-    (2) checks if it's been hit and reports that back someway and
-        -INPUT: coordinate
-        - If coordinates matches one of the ones in the array, return hit
-        -OUTPUT: return hit or not
-     (3) reports if it's been sunk
-        -INPUT: arrayPoisitions
-        -constantly check if all arrayPositions are hit
-        -OUTPUT: return sunk or not sunk status
-*/
 
 ///////////////////////////////////////////////////////////////
 //Gameboar funciton
@@ -402,11 +385,15 @@ const gameLogic = (() => {
 gameLogic.createBoard("grid1");
 gameLogic.createBoard('grid2');
 gameLogic.createStartBtn('grid2');
-let ship1 = ship.createShip('ship1',3, "text1", true);
-let ship2 = ship.createShip('ship2',5, "text2", false);
-let ship3 = ship.createShip('ship3',3, "text1", true);
-let ship4 = ship.createShip('ship4',4, "text2", true);
-console.log(ship1.getCoordinates)
+
+let ship1 = ship.createShip('ship1', 3, "text1", true);
+ship1.testAddCoordinates(1);
+ship1.testAddCoordinates(2);
+ship1.testGetCoordinates();
+
+let ship2 = ship.createShip('ship2', 5, "text2", false);
+let ship3 = ship.createShip('ship3', 3, "text1", true);
+let ship4 = ship.createShip('ship4', 4, "text2", true);
 
 // gameLogic.createBoard("grid1");
 // gameLogic.createBoard('grid2');
