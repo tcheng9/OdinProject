@@ -93,9 +93,10 @@ var ship = (() => {
             ev.target.appendChild(document.getElementById(data));
             let targetX = ev.target.id[0];
             let targetY = ev.target.id[1];
-
+            console.log(ev.target.id[0]);
+            console.log(ev.target.id[1]);
             addCoordinates(targetX,targetY,isHorizontal, length);
-            getCoordinates();
+            
         }
     }
     
@@ -402,7 +403,7 @@ let ship1 = ship.createShip('ship1',3, "text1", true);
 let ship2 = ship.createShip('ship2',5, "text2", false);
 let ship3 = ship.createShip('ship3',3, "text1", true);
 let ship4 = ship.createShip('ship4',4, "text2", true);
-ship1.returnCoordinates();
+// ship1.returnCoordinates();
 
 // gameLogic.createBoard("grid1");
 // gameLogic.createBoard('grid2');
