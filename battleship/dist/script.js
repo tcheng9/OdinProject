@@ -22,13 +22,12 @@
         a. calculate it  based on their length and whether all of their positons are 'hit'
 */
 
-var ship = (() => {
-    let length = 0;
-    let shipCoordinates = [];
-    let isHorizontal = false;
+const ship = {
 
     //function for creating ship and giving its functionality
-    function createShip(divID, length, text, horizontal){
+    createShip(divID, length, text, horizontal) {
+        let isHorizontal = horizontal;
+
         shipCoordinates = [];
         let shipDiv = document.createElement("div");
         shipDiv.id = divID;
@@ -85,7 +84,9 @@ var ship = (() => {
         for (let i = 0; i < cellsDroppable.length; i++){
             cellsDroppable[i].addEventListener("drop", drop);
         }
-       
+        
+
+
         function drop(ev){
             ev.preventDefault();
             
@@ -93,17 +94,21 @@ var ship = (() => {
             ev.target.appendChild(document.getElementById(data));
             let targetX = ev.target.id[0];
             let targetY = ev.target.id[1];
-            console.log(ev.target.id[0]);
-            console.log(ev.target.id[1]);
-            addCoordinates(targetX,targetY,isHorizontal, length);
+            
+          
+            ////
+            //Function to track coordinates and move them to new location
+            
             
         }
-    }
+        
+        return shipCoordinates;
+    },
     
     
 
     //Function for determining positions
-    function addCoordinates(x,y, isHorizontal, length){
+    addCoordinates(x,y, isHorizontal, length){
         let arr =[];
         x = parseInt(x);
         y = parseInt(y);
@@ -121,20 +126,17 @@ var ship = (() => {
                 y = y + 1;
             } 
         }
-
-
-        
         return shipCoordinates;
-    }
+    },
 
     //function to return a ship's coordinates
-    function getCoordinates(){
+    getCoordinates(){
         console.log(shipCoordinates); 
         return shipCoordinates;
-    }
+    },
 
     //Function for calculating if it's been hit
-    function isHit(x,y){
+    isHit(x,y){
         length = shipCoordinates.length;
         for (let i = 0; i <= length; i++){
             let shipX = shipCoordinates[i][0];
@@ -155,9 +157,9 @@ var ship = (() => {
         }
 
         return 'no hit';
-    }
+    },
     //Function for calculating if it's sunk
-    function isSunk(){
+    isSunk(){
         length = shipCoordinates.length;
         
         for (let i = 0; i < length; i++){
@@ -170,20 +172,21 @@ var ship = (() => {
         }
 
         return 'sunk';
-    }
+    },
    
     
-    return {
-        length,
-        shipCoordinates,
-        addCoordinates,
-        getCoordinates,
-        isHit,
-        isSunk,
-        createShip,
+    // return {
+
+    //     // length,
+    //     // shipCoordinates,
+    //     // addCoordinates,
+    //     // getCoordinates,
+    //     // isHit,
+    //     // isSunk,
+    //     // createShip,
         
-    }
-})();
+    // }
+};
 
 
 //module.exports.ship = ship;
@@ -403,7 +406,7 @@ let ship1 = ship.createShip('ship1',3, "text1", true);
 let ship2 = ship.createShip('ship2',5, "text2", false);
 let ship3 = ship.createShip('ship3',3, "text1", true);
 let ship4 = ship.createShip('ship4',4, "text2", true);
-// ship1.returnCoordinates();
+console.log(ship1.getCoordinates)
 
 // gameLogic.createBoard("grid1");
 // gameLogic.createBoard('grid2');
