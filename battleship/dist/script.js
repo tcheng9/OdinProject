@@ -81,8 +81,6 @@ const ship = {
             cellsDroppable[i].addEventListener("drop", drop);
         }
         
-
-
         function drop(ev){
             ev.preventDefault();
             
@@ -124,8 +122,6 @@ const ship = {
         
         return shipCoordinates;
     },
-    
-    
 
     //Function for determining positions
     // function addCoordinates(x,y, isHorizontal, length){
@@ -149,9 +145,18 @@ const ship = {
     //     return shipCoordinates;
     // },
 
+    testAddCoordinates(x,y){
+        shipCoordinates.push(x);
+        shipCoordinates.push(y);
+       
+    },
+
+    testGetCoordinates(){
+        console.log(shipCoordinates);
+        return shipCoordinates;
+    },
     //function to return a ship's coordinates
     getCoordinates(){
-        console.log(shipCoordinates); 
         return shipCoordinates;
     },
 
@@ -211,22 +216,6 @@ const ship = {
 
 //module.exports.ship = ship;
 
-//Mock testing ideas for ship()
-/*
-    write a test that (1)takes in coordinates , 
-    - Takes in coordinate
-    - Appends them to coordinatesArray
-    -returns array to be used for later game logic as needed
-
-    (2) checks if it's been hit and reports that back someway and
-        -INPUT: coordinate
-        - If coordinates matches one of the ones in the array, return hit
-        -OUTPUT: return hit or not
-     (3) reports if it's been sunk
-        -INPUT: arrayPoisitions
-        -constantly check if all arrayPositions are hit
-        -OUTPUT: return sunk or not sunk status
-*/
 
 ///////////////////////////////////////////////////////////////
 //Gameboar funciton
