@@ -4,10 +4,6 @@
 //   }
 //   module.exports = sum;
 
-
-
-
-
   /*
   Ship factory function:
     1. Ship object includes
@@ -47,7 +43,7 @@ const ship = {
             if (isHorizontal == true){
                 let shipLength = length * 50;
                 shipDiv.style.height = '50px';
-                shipDiv.style.width = `${shipLength}` + 'px';
+                shipDiv.style.width = `${ shipLength}` + 'px';
                 
             } else {
                 //If isHorizontal == false
@@ -95,12 +91,36 @@ const ship = {
             let targetX = ev.target.id[0];
             let targetY = ev.target.id[1];
             
-          
+            addCoordinates(targetX, targetY, isHorizontal, length);
+            
             ////
             //Function to track coordinates and move them to new location
-            
-            
         }
+
+        function addCoordinates(x,y, isHorizontal, length){
+            let parentArr = [];
+            let arr =[];
+            x = parseInt(x);
+            y = parseInt(y);
+            console.log(shipDiv.id);
+            if (isHorizontal == true){
+                for (let i = 0; i < length; i++){
+                    arr = [x,y];
+                    parentArr.push(arr);
+                    x = x + 1;
+                }
+            } else {
+                //is horizontal == false
+                for (let i = 0; i < length; i++){
+                    arr = [x,y];
+                    parentArr.push(arr);
+                    y = y + 1;
+                } 
+            }
+            console.log(parentArr);
+            return parentArr;
+        }
+    
         
         return shipCoordinates;
     },
@@ -108,26 +128,26 @@ const ship = {
     
 
     //Function for determining positions
-    addCoordinates(x,y, isHorizontal, length){
-        let arr =[];
-        x = parseInt(x);
-        y = parseInt(y);
-        if (isHorizontal == true){
-            for (let i = 0; i < length; i++){
-                arr = [x,y];
-                shipCoordinates.push(arr);
-                x = x + 1;
-            }
-        } else {
-            //is horizontal == false
-            for (let i = 0; i < length; i++){
-                arr = [x,y];
-                shipCoordinates.push(arr);
-                y = y + 1;
-            } 
-        }
-        return shipCoordinates;
-    },
+    // function addCoordinates(x,y, isHorizontal, length){
+    //     let arr =[];
+    //     x = parseInt(x);
+    //     y = parseInt(y);
+    //     if (isHorizontal == true){
+    //         for (let i = 0; i < length; i++){
+    //             arr = [x,y];
+    //             shipCoordinates.push(arr);
+    //             x = x + 1;
+    //         }
+    //     } else {
+    //         //is horizontal == false
+    //         for (let i = 0; i < length; i++){
+    //             arr = [x,y];
+    //             shipCoordinates.push(arr);
+    //             y = y + 1;
+    //         } 
+    //     }
+    //     return shipCoordinates;
+    // },
 
     //function to return a ship's coordinates
     getCoordinates(){
@@ -175,15 +195,15 @@ const ship = {
     },
    
     
-    // return {
-
-    //     // length,
-    //     // shipCoordinates,
-    //     // addCoordinates,
-    //     // getCoordinates,
-    //     // isHit,
-    //     // isSunk,
-    //     // createShip,
+    //  return {
+    //     getCoordinates: getCoordinates()
+    //     length,
+    //     shipCoordinates,
+    //     addCoordinates,
+    //     getCoordinates,
+    //     isHit,
+    //     isSunk,
+    //     createShip,
         
     // }
 };
@@ -406,7 +426,7 @@ let ship1 = ship.createShip('ship1',3, "text1", true);
 let ship2 = ship.createShip('ship2',5, "text2", false);
 let ship3 = ship.createShip('ship3',3, "text1", true);
 let ship4 = ship.createShip('ship4',4, "text2", true);
-console.log(ship1.getCoordinates)
+console.log(ship1.getCoordinates())
 
 // gameLogic.createBoard("grid1");
 // gameLogic.createBoard('grid2');
