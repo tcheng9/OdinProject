@@ -18,6 +18,7 @@
         a. calculate it  based on their length and whether all of their positons are 'hit'
 */
 
+<<<<<<< HEAD
 const ship = {
 
     //function for creating ship and giving its functionality
@@ -25,6 +26,15 @@ const ship = {
         let isHorizontal = horizontal;
 
         shipCoordinates = [];
+=======
+const ship = (() => {
+    let length = 0;
+    let shipCoordinates = [];
+    let isHorizontal = false;
+
+    //function for creating ship and giving its functionality
+    function createShip(divID, length, text, horizontal){
+>>>>>>> parent of 7899928... daily update
         let shipDiv = document.createElement("div");
         shipDiv.id = divID;
         //shipDiv.style.position = 'relative';
@@ -86,6 +96,7 @@ const ship = {
             
             var data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
+<<<<<<< HEAD
             let targetX = ev.target.id[0];
             let targetY = ev.target.id[1];
             
@@ -120,6 +131,17 @@ const ship = {
         }
     
         
+=======
+        }
+    }
+    
+
+    //Function for determining positions
+    function addCoordinates(x,y){
+        let coordinates = [x,y];
+
+        shipCoordinates.push(coordinates);
+>>>>>>> parent of 7899928... daily update
         return shipCoordinates;
     },
 
@@ -156,10 +178,16 @@ const ship = {
         return shipCoordinates;
     },
     //function to return a ship's coordinates
+<<<<<<< HEAD
     getCoordinates(){
         return shipCoordinates;
     },
 
+=======
+    function getCoordinates(){
+        return shipCoordinates;
+    }
+>>>>>>> parent of 7899928... daily update
     //Function for calculating if it's been hit
     isHit(x,y){
         length = shipCoordinates.length;
@@ -408,6 +436,7 @@ const gameLogic = (() => {
 
 })();
 
+<<<<<<< HEAD
 gameLogic.createBoard("grid1");
 gameLogic.createBoard('grid2');
 gameLogic.createStartBtn('grid2');
@@ -416,6 +445,15 @@ let ship2 = ship.createShip('ship2',5, "text2", false);
 let ship3 = ship.createShip('ship3',3, "text1", true);
 let ship4 = ship.createShip('ship4',4, "text2", true);
 console.log(ship1.getCoordinates())
+=======
+createBoard("grid1");
+createBoard('grid2');
+createStartBtn('grid2');
+ship.createShip('testDiv',3, "text1", true);
+ship.createShip('asdakdmaslksdnsak',2, "text2", false);
+
+
+>>>>>>> parent of 7899928... daily update
 
 // gameLogic.createBoard("grid1");
 // gameLogic.createBoard('grid2');
