@@ -1,7 +1,7 @@
 //Initial todo list for a task
 //QUESTION: is this for a todo LIST or a todo ITEM? 
 //ANSWER: todo item I think. -> Make multiple in a todo 
-const todoFactory = (title, desc, dueDate, priority, notes, completedStatus) => {
+const todoItem = (title, desc, dueDate, priority, notes, completedStatus) => {
     
     
 
@@ -46,21 +46,54 @@ const project = (name, completedStatus) => {
 }
 //Initial variables to check
 //Initializing to do items and the parent project factory
+<<<<<<< HEAD
 let todo1 = todoFactory("task1", "desc1", 'dueDate1', 'prio1');
 let todo2 = todoFactory("task2", 'desc2', 'dueDate2', 'prio2');
 let list1 = todoFactory("task3", "tdesc3", 'prio3');
 let project1 = project("proj1");
 
 
+||||||| 0647b20d
+let todo1 = todoFactory("task1");
+let todo2 = todoFactory("task2");
+let list1 = todoFactory("test1", "this is a test for 1");
+let project1 = project();
+
+
+=======
+let todo1 = todoItem("task1");
+let todo2 = todoItem("task2");
+let list1 = todoItem("test1", "this is a test for 1");
+
+let project1 = project();
+>>>>>>> d058fef9e449b3665db896cb65c72988a0574480
 //Add an item to the parent project
 project1.addItem(todo1);
 project1.addItem(todo2);
 project1.addItem(list1);
+project1.addItem("tests");
+project1.addItem("tests2");
 
+//Printing out the specific value at each todoList
+console.log(project1.todoList[0].getTitle);
+console.log(project1.todoList[1].getTitle);
+console.log(project1.todoList[2].getTitle);
+
+<<<<<<< HEAD
 //Creating a second project w/ todos
 let project2 = project("prj2");
 let proj2todo = todoFactory("item1");
 project2.addItem(proj2todo);
+||||||| 0647b20d
+//Print the list backout to check if it's working
+//console.log(project1);
+// console.log(project1.todoArray[0].getTitle);
+// console.log(project1);
+
+// console.log("break");
+=======
+
+>>>>>>> d058fef9e449b3665db896cb65c72988a0574480
 
 //Parent container to contain and eventually display all projects
 const allProjects = () => {
@@ -84,6 +117,8 @@ const allProjects = () => {
 
 let project3 = project("proj3");
 
+console.log(project1);
+console.log(project2);
 let parentProject = allProjects();
 parentProject.appendProject(project1);
 parentProject.appendProject(project2);
@@ -483,6 +518,7 @@ site.projBtnToggle();
 site.listContents(parentProject);
 site.todoListPopup(parentProject);
 
+<<<<<<< HEAD
 
 //Next steps (3/28/22):
 //How do I get the "add new task" button to only append to a specific div
@@ -493,3 +529,14 @@ site.todoListPopup(parentProject);
 //In retrospect, I should have individual functions that build up certain parts or functions
 //As a result, I don't think I can get any further with this project based on using iterators
 //Due to me needing to add a task to specific project BUT any time I hit submit, it will add to all projects
+||||||| 0647b20d
+// Next steps:
+// 1. For each project, create a div w/ that class name so there will be divs unique to each project
+// 2. Turn to do  lists into an html list
+=======
+// Next steps:
+// 1. For each project, create a div w/ that class name so there will be divs unique to each project
+
+// 2. Turn to do  lists into an html list
+
+>>>>>>> d058fef9e449b3665db896cb65c72988a0574480
