@@ -20,7 +20,6 @@ const WorkExperience = () => {
     };
 
     return (
-       
         <div className = "workExperience">
           <form onSubmit = {handleSubmit}>
               <label>
@@ -31,6 +30,7 @@ const WorkExperience = () => {
               required
               value = {compName}
               onChange = {(e) => setCompName(e.target.value)}
+            
               />
     
               <label>
@@ -43,8 +43,6 @@ const WorkExperience = () => {
                   onChange = {(e) => setJobTitle(e.target.value)}
               />
            
-         
-    
               <label>
                   Job Tasks
               </label>
@@ -87,3 +85,4 @@ const WorkExperience = () => {
 }
 
 export default WorkExperience
+
