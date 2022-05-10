@@ -1,7 +1,7 @@
 //Initial todo list for a task
 //QUESTION: is this for a todo LIST or a todo ITEM? 
 //ANSWER: todo item I think. -> Make multiple in a todo 
-const todoFactory = (title, desc, dueDate, priority, notes, completedStatus) => {
+const todoItem = (title, desc, dueDate, priority, notes, completedStatus) => {
     
 
     return {
@@ -21,47 +21,48 @@ const todoFactory = (title, desc, dueDate, priority, notes, completedStatus) => 
 //i.e 
 
 const project = (name, completedStatus) => {
-    let todoArray = [];
+    let todoList = [];
     
     //Add an item to the existing list
     function addItem(todoItem){
-        todoArray.push(todoItem);
+        todoList.push(todoItem);
     }
     
     //Print out the list to check what is contained inside the project factory function
     function getList(){
-        for (let i = 0; i < todoArray.length; i++){
-            console.log(todoArray[i]);
+        for (let i = 0; i < todoList.length; i++){
+            console.log(todoList[i]);
         }
     }
     return {
         
         addItem: addItem,
         getList: getList,
-        todoArray:todoArray,
+        todoList:todoList,
         name: name,
         completedStatus:completedStatus, 
     }
 }
 //Initial variables to check
 //Initializing to do items and the parent project factory
-let todo1 = todoFactory("task1");
-let todo2 = todoFactory("task2");
-let list1 = todoFactory("test1", "this is a test for 1");
+let todo1 = todoItem("task1");
+let todo2 = todoItem("task2");
+let list1 = todoItem("test1", "this is a test for 1");
+
 let project1 = project();
-
-
 //Add an item to the parent project
 project1.addItem(todo1);
 project1.addItem(todo2);
 project1.addItem(list1);
+project1.addItem("tests");
+project1.addItem("tests2");
 
-//Print the list backout to check if it's working
-//console.log(project1);
-// console.log(project1.todoArray[0].getTitle);
-// console.log(project1);
+//Printing out the specific value at each todoList
+console.log(project1.todoList[0].getTitle);
+console.log(project1.todoList[1].getTitle);
+console.log(project1.todoList[2].getTitle);
 
-// console.log("break");
+
 
 //Parent container to contain and eventually display all projects
 const allProjects = () => {
@@ -85,6 +86,8 @@ const allProjects = () => {
 let project2 = project("prj2");
 let project3 = project("proj3");
 
+console.log(project1);
+console.log(project2);
 let parentProject = allProjects();
 parentProject.appendProject(project1);
 parentProject.appendProject(project2);
@@ -235,4 +238,6 @@ site.projBtnToggle();
 
 // Next steps:
 // 1. For each project, create a div w/ that class name so there will be divs unique to each project
+
 // 2. Turn to do  lists into an html list
+
