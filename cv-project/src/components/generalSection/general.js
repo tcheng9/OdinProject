@@ -5,7 +5,7 @@ const General = () => {
     const [title, setTitle] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [title2, setTitle2] = useState('');  
+    
 
 
     const handleSubmit = (e) => {
@@ -23,21 +23,41 @@ const General = () => {
 
     return (
         
-      <div className = "generalInfo">
-        <form id = "testSingleLineForm">
-          <label> 
-            Name
-          </label>
+      <div className = "generalInfo" onSubmit = {handleSubmit}>
+        <form id = "testSingleLineForm" className = "generalForm">
+          
           <br></br>
           <input 
           type = "text" 
-          value={title2}
-          onChange = {(e) => setTitle2(e.target.value)}>
+          value={title}
+          onChange = {(e) => setTitle(e.target.value)}
+          placeholder = "Name"
+          id = "generalName" 
+          />
+          
 
-          </input>
+          <br></br>
+          <input 
+          type = "text" 
+          value={email}
+          onChange = {(e) => setEmail(e.target.value)}
+          placeholder = "Email"
+          id = "generalEmail"
+          />
+          
+          <br></br>
+          <input 
+          type = "text" 
+          value={phoneNumber}
+          onChange = {(e) => setPhoneNumber(e.target.value)}
+          placeholder = "Phone Number"
+          id = "generalPhone"
+          />
+
+        
         </form>
      
-        <form onSubmit = {handleSubmit} id = "generalForm">
+        {/* <form onSubmit = {handleSubmit} id = "generalForm">
             
             <input 
             type = "text"
@@ -72,7 +92,7 @@ const General = () => {
 
             <button> Add Info</button>
             
-            </form>
+            </form> */}
       </div>
     )
   }

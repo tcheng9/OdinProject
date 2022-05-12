@@ -11,16 +11,35 @@ const WorkExperience = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch('http://localhost:3000/', {
-            method: 'POST',
-            headers: { "Content-Type": "application/json"},
-        }).then(() => {
-            console.log("new work experiencee loaded");
-        })
+        ///////just use "createWorkDiv()" function to create div on submit"
+        //PROPS??? 
+        // fetch('http://localhost:3000/', {
+        //     method: 'POST',
+        //     headers: { "Content-Type": "application/json"},
+        // }).then(() => {
+        //     console.log("new work experiencee loaded");
+        // })
     };
 
+    const addExperience = () => {
+        console.log("clicked");
+        let formDiv = document.getElementById("workExperienceForm");
+        
+        if (formDiv.style.display == "none"){
+            formDiv.style.display = "flex";
+        } else {
+            formDiv.style.display = "none";
+            
+        }
+    }
+    
     return (
         <div className = "workExperience">
+            <button onClick = {addExperience} id = "addWorkExpBtn">
+                + Add Work Experience
+            </button>
+
+
           <form onSubmit = {handleSubmit} id = "workExperienceForm">
               <label id = "workLabel">
                   Company Name

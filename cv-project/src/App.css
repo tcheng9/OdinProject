@@ -1,20 +1,37 @@
 
+.generalForm{
+    margin-bottom: 50px;
+}
 
-#generalForm{
+#generalName{
+    font-size: 48px;
+}
+
+#generalEmail,
+#generalPhone{
+    font-size:24px;
+}
+#generalName,
+#generalEmail,
+#generalPhone{
+    border:0;
+}
+
+/* #generalForm{
     display:flex;
     flex-direction: column;
     width: 60%;
     margin-bottom:50px;
-}
+} */
 
-#generalName{
+/* #generalName{
     height: 75px;
 }
 
 #generalEmail, 
 #generalPhoneNumber {
     height: 25px;
-}
+} */
 
 /* ------------------------------------------------------------ */
 
@@ -35,8 +52,15 @@
     display:flex;
     flex-direction:column;
     width:60%;
+    
 }
 
 #workLabel{
     font-weight:bold;
+}
+
+#addWorkExpBtn{
+    color:blue;
+    border: 0;
+    background-color: white;
 }
