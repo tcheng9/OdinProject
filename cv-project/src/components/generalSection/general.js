@@ -22,44 +22,41 @@ const General = () => {
     return (
        
       <div className = "generalInfo">
-        <form onSubmit = {handleSubmit}>
-            <label>
-                Name
-            </label>
+        <form onSubmit = {handleSubmit} id = "generalForm">
+            
             <input 
             type = "text"
             required
             value = {title}
             onChange = {(e) => setTitle(e.target.value)}
+            placeholder = "Name"
+            id = "generalName"
             />
   
-            <label>
-                Email
-            </label>
+            
             <input
                 type = "text"
                 required
                 value = {email}
                 onChange = {(e) => setEmail(e.target.value)}
+                placeholder = "Email"
+                id = "generalEmail"
             />
          
        
   
-            <label>
-                Phone Number
-            </label>
+           
             <input 
             type = "text"
             required
             value = {phoneNumber}
             onChange = {(e) => setPhoneNumber(e.target.value)}
+            placeholder = "Phone Number"
+            id = "generalPhoneNumber"
             />
 
             <button> Add Info</button>
             
-            <p> {title}</p>
-            <p> {email} </p>
-            <p> {phoneNumber} </p>
             </form>
       </div>
     )
