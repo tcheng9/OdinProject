@@ -6,7 +6,8 @@ const Education = () => {
     const [major, setMajor] = useState('');
     const [dateStart, setDateStart] = useState('');
     const [dateEnd, setDateEnd] = useState('');
-
+    const [degree, setDegree] = useState('');
+    
     const handleSubmit = (e) => {
       e.preventDefault();
       // const blog = {schoolName};
@@ -23,7 +24,7 @@ const Education = () => {
     return (
        
       <div className = "education">
-        <form onSubmit = {handleSubmit}>
+        <form onSubmit = {handleSubmit} id = "educationForm">
             <label>
                 School Name
             </label>
@@ -32,9 +33,10 @@ const Education = () => {
             required
             value = {schoolName}
             onChange = {(e) => setSchoolName(e.target.value)}
+            id = "educationSchoolName"
             />
   
-            <label>
+            <label id = "educationLabel"> 
                 Major
             </label>
             <input
@@ -42,11 +44,12 @@ const Education = () => {
                 required
                 value = {major}
                 onChange = {(e) => setMajor(e.target.value)}
+                id = "educationMajor"
             />
          
        
   
-            <label>
+            <label id = "educationLabel">
                 Date Start
             </label>
             <input 
@@ -54,9 +57,10 @@ const Education = () => {
             required
             value = {dateStart}
             onChange = {(e) => setDateStart(e.target.value)}
+            id = "educationDateStart"
             />
 
-            <label>
+            <label id = "educationLabel">
                 Date End
             </label>
             <input 
@@ -64,14 +68,27 @@ const Education = () => {
             required
             value = {dateEnd}
             onChange = {(e) => setDateEnd(e.target.value)}
+            id = "educationDateEnd"
+            />
+
+
+            <label id = "educationLabel"> 
+              Degree
+            </label>
+            <input
+            type = "text"
+            required
+            value = {degree}
+            onChange = {(e) => setDegree(e.target.value)}
+            id = "educationDegree"
             />
 
             <button> Submit Education Info. </button>
             
-            <p> {schoolName}</p>
+            {/* <p> {schoolName}</p>
             <p> {major} </p>
             <p> {dateStart} </p>
-            <p> {dateEnd} </p>
+            <p> {dateEnd} </p> */}
             </form>
       </div>
     )

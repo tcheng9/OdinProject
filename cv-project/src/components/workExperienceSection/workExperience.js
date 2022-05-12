@@ -21,7 +21,7 @@ const WorkExperience = () => {
 
     return (
         <div className = "workExperience">
-          <form onSubmit = {handleSubmit}>
+          <form onSubmit = {handleSubmit} id = "workExperienceForm">
               <label>
                   Company Name
               </label>

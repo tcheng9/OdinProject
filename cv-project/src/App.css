@@ -1,0 +1,38 @@
+
+
+#generalForm{
+    display:flex;
+    flex-direction: column;
+    width: 60%;
+    margin-bottom:50px;
+}
+
+#generalName{
+    height: 75px;
+}
+
+#generalEmail, 
+#generalPhoneNumber {
+    height: 25px;
+}
+
+/* ------------------------------------------------------------ */
+
+#educationForm{
+    display:flex;
+    flex-direction:column;
+    width:60%;
+    margin-bottom: 50px;
+}
+
+#educationForm{
+    font-weight:bold;
+}
+
+/* ------------------------------------------------------------ */
+
+.workExperienceForm{
+    display:flex;
+    flex-direction:column;
+    width:60%;
+}
