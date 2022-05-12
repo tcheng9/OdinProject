@@ -5,6 +5,8 @@ const General = () => {
     const [title, setTitle] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [title2, setTitle2] = useState('');  
+
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -20,8 +22,21 @@ const General = () => {
     }
 
     return (
-       
+        
       <div className = "generalInfo">
+        <form id = "testSingleLineForm">
+          <label> 
+            Name
+          </label>
+          <br></br>
+          <input 
+          type = "text" 
+          value={title2}
+          onChange = {(e) => setTitle2(e.target.value)}>
+
+          </input>
+        </form>
+     
         <form onSubmit = {handleSubmit} id = "generalForm">
             
             <input 

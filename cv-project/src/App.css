@@ -31,8 +31,12 @@
 
 /* ------------------------------------------------------------ */
 
-.workExperienceForm{
+#workExperienceForm{
     display:flex;
     flex-direction:column;
     width:60%;
+}
+
+#workLabel{
+    font-weight:bold;
 }

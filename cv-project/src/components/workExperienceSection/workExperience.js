@@ -22,7 +22,7 @@ const WorkExperience = () => {
     return (
         <div className = "workExperience">
           <form onSubmit = {handleSubmit} id = "workExperienceForm">
-              <label>
+              <label id = "workLabel">
                   Company Name
               </label>
               <input 
@@ -33,7 +33,7 @@ const WorkExperience = () => {
             
               />
     
-              <label>
+              <label id = "workLabel">
                   Job Title
               </label>
               <input
@@ -43,7 +43,7 @@ const WorkExperience = () => {
                   onChange = {(e) => setJobTitle(e.target.value)}
               />
            
-              <label>
+              <label id = "workLabel">
                   Job Tasks
               </label>
               <input 
@@ -53,7 +53,7 @@ const WorkExperience = () => {
               onChange = {(e) => setJobTasks(e.target.value)}
               />
   
-              <label>
+              <label id = "workLabel">
                   Date Start
               </label>
               <input 
@@ -63,7 +63,7 @@ const WorkExperience = () => {
               onChange = {(e) => setDateStart(e.target.value)}
               />
   
-            <label>
+            <label id = "workLabel">
                   Date End
               </label>
               <input 
