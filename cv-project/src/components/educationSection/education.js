@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {useState} from "react";
-
+// import Child from "../workExperienceSection/formFunctions";
+import displayEdu from "../workExperienceSection/formFunctions";
 const Education = () => {
     const [schoolName, setSchoolName] = useState('');
     const [major, setMajor] = useState('');
@@ -21,6 +22,8 @@ const Education = () => {
       })
     }
 
+   
+    
     return (
        
       <div className = "education">
@@ -90,6 +93,10 @@ const Education = () => {
             <p> {dateStart} </p>
             <p> {dateEnd} </p> */}
             </form>
+            
+            <p>
+              displayEdu()
+            </p>
       </div>
     )
   }
