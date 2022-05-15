@@ -10,7 +10,10 @@ const WorkExperience = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        console.log("click");
+        return (
+            <p> {compName} </p>
+        )
         ///////just use "createWorkDiv()" function to create div on submit"
         //PROPS??? 
         // fetch('http://localhost:3000/', {
@@ -32,6 +35,7 @@ const WorkExperience = () => {
             
         }
     }
+    
     
     return (
         <div className = "workExperience">

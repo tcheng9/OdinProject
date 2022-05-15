@@ -1,7 +1,9 @@
+import { render } from "@testing-library/react";
 import React, { Component } from "react";
 import {useState} from "react";
 // import Child from "../workExperienceSection/formFunctions";
-import displayEdu from "../workExperienceSection/formFunctions";
+
+
 const Education = () => {
     const [schoolName, setSchoolName] = useState('');
     const [major, setMajor] = useState('');
@@ -11,16 +13,17 @@ const Education = () => {
     
     const handleSubmit = (e) => {
       e.preventDefault();
-      // const blog = {schoolName};
-  
-      fetch('http://localhost:3000/', {
-        method: 'POST',
-        headers: {"Content-Type": "application/json"},
-        // body: JSON.stringify(blog)
-      }).then(() => {
-        console.log("new blog loaded");
-      })
-    }
+      console.log("click");
+      
+      ///////just use "createWorkDiv()" function to create div on submit"
+      //PROPS??? 
+      // fetch('http://localhost:3000/', {
+      //     method: 'POST',
+      //     headers: { "Content-Type": "application/json"},
+      // }).then(() => {
+      //     console.log("new work experiencee loaded");
+      // })
+  };
 
    
     
@@ -88,15 +91,13 @@ const Education = () => {
 
             <button> Submit Education Info. </button>
             
-            {/* <p> {schoolName}</p>
+            <p> {schoolName}</p>
             <p> {major} </p>
             <p> {dateStart} </p>
-            <p> {dateEnd} </p> */}
+            <p> {dateEnd} </p>
             </form>
             
-            <p>
-              displayEdu()
-            </p>
+            
       </div>
     )
   }
