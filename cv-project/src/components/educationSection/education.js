@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+ import { render } from "@testing-library/react";
 import React, { Component } from "react";
 import {useState} from "react";
 // import Child from "../workExperienceSection/formFunctions";
@@ -11,25 +11,36 @@ const Education = () => {
     const [dateEnd, setDateEnd] = useState('');
     const [degree, setDegree] = useState('');
     
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log("click");
-      
-      ///////just use "createWorkDiv()" function to create div on submit"
-      //PROPS??? 
-      // fetch('http://localhost:3000/', {
-      //     method: 'POST',
-      //     headers: { "Content-Type": "application/json"},
-      // }).then(() => {
-      //     console.log("new work experiencee loaded");
-      // })
-  };
-
    
-    
+
+
+   const data = [{"name" : schoolName}, {"name" : major}];
+   const listItems = data.map((d) => <li key = {d.name}> {d.name} </li>) 
+  
+   const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submitted");
     return (
+      <div>
+        {listItems}
+      </div>
+    )
+    
+    ///////just use "createWorkDiv()" function to create div on submit"
+    //PROPS??? 
+    // fetch('http://localhost:3000/', {
+    //     method: 'POST',
+    //     headers: { "Content-Type": "application/json"},
+    // }).then(() => {
+    //     console.log("new work experiencee loaded");
+    // })
+  };
+  
+   
+   return (
        
       <div className = "education">
+      
         <form onSubmit = {handleSubmit} id = "educationForm">
             <label>
                 School Name
@@ -91,11 +102,9 @@ const Education = () => {
 
             <button> Submit Education Info. </button>
             
-            <p> {schoolName}</p>
-            <p> {major} </p>
-            <p> {dateStart} </p>
-            <p> {dateEnd} </p>
+           
             </form>
+            
             
             
       </div>
