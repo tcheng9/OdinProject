@@ -9,8 +9,12 @@ import './App.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-  <General/>
-  <Education/>
-  <WorkExperience/>
+    <General/>
+    <Education/>
+    <WorkExperience/>
+    <div id = "placeholderDiv">
+      
+    </div>
   </React.StrictMode>
+  
 );

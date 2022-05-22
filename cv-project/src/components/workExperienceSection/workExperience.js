@@ -1,5 +1,7 @@
+import { render } from "@testing-library/react";
 import React, {Component} from "react";
 import {useState} from "react";
+import ReactDOM from "react-dom";
 
 const WorkExperience = () => {
     const [compName, setCompName] = useState('');
@@ -11,9 +13,7 @@ const WorkExperience = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("click");
-        return (
-            <p> {compName} </p>
-        )
+        compNameDiv();
         ///////just use "createWorkDiv()" function to create div on submit"
         //PROPS??? 
         // fetch('http://localhost:3000/', {
@@ -36,10 +36,32 @@ const WorkExperience = () => {
         }
     }
     
-    
+    function Welcome(props){
+        let x = props.name;
+        let y = props.jobTitle;
+        let z = props.jobTasks;
+        
+        return (
+            <div>
+                <h2> {x} </h2>
+                <p> {y} </p>
+                <p> {z}</p>
+            </div>
+        )
+    }
+
+    function compNameDiv(){
+        const root = ReactDOM.createRoot(document.getElementById("placeholderDiv"));
+        const element = <Welcome name = {compName} jobTitle = {jobTitle} jobTasks = {jobTasks}/>;
+
+        root.render(element);
+    }
+
+
+
     return (
         <div className = "workExperience">
-            <button onClick = {addExperience} id = "addWorkExpBtn">
+            <button id = "addWorkExpBtn">
                 + Add Work Experience
             </button>
 
@@ -109,3 +131,45 @@ const WorkExperience = () => {
 
 export default WorkExperience
 
+
+// ////////////
+//working
+handleSubmit(e) {
+    e.preventDefault();
+    const
+    { contacts } = this.state,
+    name = this.refs.name.value,
+    email = this.refs.email.value,
+    phone = this.refs.phone.value;
+    this.setState({
+      contacts: [...contacts, {
+        name,
+        email,
+        phone
+      }]
+    }, () => {
+      this.refs.name.value = '';
+      this.refs.email.value = '';
+      this.refs.phone.value = '';
+    });
+  }
+//Not working
+handleSubmit(e) {
+    e.preventDefault();
+    const
+    { contacts } = this.state,
+    name = this.refs.name.value,
+    email = this.refs.email.value,
+    phone = this.refs.phone.value;
+    this.setState({
+     contacts: [...contacts, {
+        name,
+        email,
+        phone
+      }]
+    }, () => {
+      this.refs.name.value = '';
+      this.refs.email.value = '';
+      this.refs.phone.value = '';
+    });
+  }
