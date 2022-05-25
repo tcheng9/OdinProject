@@ -64,3 +64,17 @@
     border: 0;
     background-color: white;
 }
+
+/* ------------------------------------------------------------ */
+
+#addEduExpBtn{
+    color:blue;
+    border: 0;
+    background-color: white;
+    
+}
+
+#workExperienceForm,
+#educationForm {
+    display:none;
+}

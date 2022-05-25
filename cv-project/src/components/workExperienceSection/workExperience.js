@@ -8,26 +8,33 @@ const WorkExperience = () => {
     const [dateStart, setDateStart] = useState('');
     const [dateEnd, setDateEnd] = useState('');
 
+    const [mainArr, setmMainArr] = useState([]);
+    
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("click");
-        return (
-            <p> {compName} </p>
-        )
-        ///////just use "createWorkDiv()" function to create div on submit"
-        //PROPS??? 
-        // fetch('http://localhost:3000/', {
-        //     method: 'POST',
-        //     headers: { "Content-Type": "application/json"},
-        // }).then(() => {
-        //     console.log("new work experiencee loaded");
-        // })
+        
+        setmMainArr([
+            ...mainArr,
+            {
+                id1: mainArr.lenght + 1,
+                compName: compName,
+                jobTitle: jobTitle,
+                jobTasks:jobTasks,
+                dateStart: dateStart,
+                dateEnd: dateEnd,
+            }
+        ])
+
+        console.log(mainArr);
+        let formDiv = document.getElementById("workExperienceForm");
+        formDiv.style.display = "none";
     };
 
     const addExperience = () => {
         console.log("clicked");
         let formDiv = document.getElementById("workExperienceForm");
-        
+    
         if (formDiv.style.display == "none"){
             formDiv.style.display = "flex";
         } else {
@@ -100,9 +107,24 @@ const WorkExperience = () => {
               
         
               </form>
+            <div id = "returnWorkList">
+            <h1> Work Experience </h1>
+            <ul>
+              {mainArr.map( m => (
+                <div key = {m.id1}>
+                  <h1> {m.compName}</h1>
+                  <li> {m.jobTitle}</li>
+                  <li> {m.jobTasks}</li>
+                  <li> {m.dateStart}</li>
+                  <li> {m.dateEnd}</li>
+                </div>
+               ))}
+            </ul>
+            </div>
+            
+        
         </div>
       ) 
 }
 
 export default WorkExperience
-

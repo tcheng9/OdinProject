@@ -17,16 +17,4 @@ function displayEdu(props){
       );
 }
 
-// const Child = (props) => {
-//     return (
-//         <div>
-//             <p> {props.schoolName2} </p>
-//             <p> {props.Major} </p>
-//             <p> {props.dateStart} </p>
-//             <p> {props.dataEnd} </p>
-//             <p> {props.data} </p>
-//         </div>
-//         );
-// }
-
 export default displayEdu;
