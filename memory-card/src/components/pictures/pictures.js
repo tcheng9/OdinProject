@@ -13,8 +13,31 @@ import penguin from "./images/penguin.jpg"
 import squirrel from "./images/squirrel.jpg"
 
 const Pictures = () => {
+    const picturesArr = [
+    {
+        id: 1,
+        photo: {cat},
+        text: "Cat",
+    },
+    {
+        id: 2,
+        photo: {bunny},
+        text: "bunny"
+    }, 
+    {
+        id: 3, 
+        photo: {deer},
+        text: "deer"
+    }
+    ]
+
     return (
-        <img src = {squirrel} width = "200px" height = "200px" alt = "Bunny" />
+        // <div>
+        // {/* <img src = {squirrel} width = "200px" height = "200px" alt = "Bunny" /> */}
+        //     {picturesArr.map((picture) => (
+        //         <img src = {picture.photo} key = {picture.id}></img> 
+        //     ))}
+        // </div>
     )
 }
 
