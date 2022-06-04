@@ -78,6 +78,8 @@ const picturesArr = [
 
 const Pictures = () => {
     const [list, setList] = useState(picturesArr);
+    const [score, setScore] = useState(0);
+    const [memoryArr, setMemoryArr] = useState([]);
 
     function shuffle(arr){
         var ctr = arr.length,
@@ -100,16 +102,53 @@ const Pictures = () => {
         console.log("shuffled");
     }
 
+    const increase = () => {
+        setScore(score => score + 1);
+    }
+
+    const reset = () => {
+        setScore(score => 0);
+    }
+
+    function getBtnID(e){
+        let id = e.target.id
+        
+        if (memoryArr.includes(id) == true){
+            //if ID is in array
+            console.log(0);
+            setMemoryArr([...memoryArr, e.target.title]);
+            console.log(memoryArr);
+        }
+        
+        // console.log(memoryArr.indexOf(e.target.id.toString()))
+        // if (memoryArr.indexOf(e.target.id.toString()) == -1){
+        //     increase();
+        //     setMemoryArr([...memoryArr, e.target.title]);
+        // } else if (memoryArr.indexOf(e.target.id.toString()) > 0){
+        //     reset();
+        //     setMemoryArr([]);
+        // }
+      
+        
+    }
+
+    function resetArr(){
+        setMemoryArr([]);
+    }
+    function mergedOnClick(e){
+        handleSubmit()
+        getBtnID(e)
+    }
     return (
        
         <div className = "picturesContainer">
             {list.map((index) => 
             <div key = {index.id}>    
-            <img onClick = {handleSubmit} src = {index.src} title = {index.text} alt = "Images" height = "200px" width = "200px"/>
+            <img onClick = {mergedOnClick} src = {index.src} title = {index.text} alt = "Images" height = "200px" width = "200px"/>
             <p>{index.text}</p> 
             </div>
             )}
-            <button onClick = {handleSubmit}> test </button>
+           
         </div>
     )
 }
