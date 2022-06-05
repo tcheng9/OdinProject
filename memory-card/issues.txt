@@ -1,0 +1,3 @@
+Issue I couldnn't solve:
+
+First click does not append to array. Not sure how to resolve issue so score/array is always off by 1

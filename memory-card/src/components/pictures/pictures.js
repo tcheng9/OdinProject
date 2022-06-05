@@ -80,7 +80,8 @@ const Pictures = () => {
     const [list, setList] = useState(picturesArr);
     const [score, setScore] = useState(0);
     const [memoryArr, setMemoryArr] = useState([]);
-
+    const [maxScore, setMaxScore] = useState(0);
+    
     function shuffle(arr){
         var ctr = arr.length,
             temp,
@@ -100,6 +101,7 @@ const Pictures = () => {
         const changes = shuffle([...list]);
         setList(changes);
         console.log("shuffled");
+        console.log("-------------------------------------------");
     }
 
     const increase = () => {
@@ -110,35 +112,40 @@ const Pictures = () => {
         setScore(score => 0);
     }
 
+
     function getBtnID(e){
-        let id = e.target.id
+        //Set title to the picture's title to make it easier
+        let title = e.target.title;
         
-        if (memoryArr.includes(id) == true){
-            //if ID is in array
-            console.log(0);
-            setMemoryArr([...memoryArr, e.target.title]);
+        
+
+        if (memoryArr.includes(title) > 0){
+            //if picture is in the array, do the necessary updates    
+            setMemoryArr([]);
+            setScore(memoryArr.length);
+            checkMaxScore(score, maxScore);
+        } else {
+            setMemoryArr(memoryArr => ([...memoryArr, title]));
+            setScore(memoryArr.length);
             console.log(memoryArr);
         }
         
-        // console.log(memoryArr.indexOf(e.target.id.toString()))
-        // if (memoryArr.indexOf(e.target.id.toString()) == -1){
-        //     increase();
-        //     setMemoryArr([...memoryArr, e.target.title]);
-        // } else if (memoryArr.indexOf(e.target.id.toString()) > 0){
-        //     reset();
-        //     setMemoryArr([]);
-        // }
-      
-        
+    }
+   
+    function checkMaxScore(currentScore, maxScore){
+        if (currentScore > maxScore){
+            setMaxScore(memoryArr.length);
+        } 
     }
 
-    function resetArr(){
-        setMemoryArr([]);
-    }
+    
     function mergedOnClick(e){
         handleSubmit()
         getBtnID(e)
     }
+
+
+
     return (
        
         <div className = "picturesContainer">
@@ -148,6 +155,8 @@ const Pictures = () => {
             <p>{index.text}</p> 
             </div>
             )}
+            <p> Score: {score}</p>
+            <p> Max Score: {maxScore} </p>
            
         </div>
     )
