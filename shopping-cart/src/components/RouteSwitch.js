@@ -2,7 +2,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 import Home from "./home";
 import Cart from "./cart";
-import Items from "./more-items";
+import Inventory from "./inventory";
 import {Link} from "react-router-dom";
 
 const RouteSwitch = () => {
@@ -11,7 +11,7 @@ const RouteSwitch = () => {
             <Routes>
                 <Route path = "/" element = {<Home />} />
                 <Route path = "/cart" element = {<Cart />} />
-                <Route path = "/items" element = {<Items />} />
+                <Route path = "/Inventory" element = {<Inventory />} />
             
             </Routes>
         </BrowserRouter>

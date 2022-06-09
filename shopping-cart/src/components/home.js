@@ -1,7 +1,7 @@
 import React from "react";
 
 
-import Items from "./more-items";
+
 import {Link} from "react-router-dom";
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
                     <li> Checkout </li>
                 </Link>
 
-                <Link to =  "/items">
+                <Link to =  "/Inventory">
                     <li> Items - Inventory </li>
                 </Link>
             </ul>
