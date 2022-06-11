@@ -49,6 +49,9 @@ const Inventory = () => {
         
     }
     
+    function successfulPage(){
+        console.log("success");
+    }
 
 
     return (
@@ -57,6 +60,10 @@ const Inventory = () => {
             <ul className = "links">
                 <Link to = "/">
                     <li> Home</li>
+                </Link>
+                <Link to = {{pathname:"/cart",
+                    state: {name: "jack", age: 25, city: "antwep"}}}>
+                    Cart 
                 </Link>
             </ul>
 
