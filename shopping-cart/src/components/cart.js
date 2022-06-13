@@ -3,12 +3,6 @@ import {Link, useLocation} from "react-router-dom";
 
 const Cart = () => {
     
-    function Test(){
-        let data = useLocation();
-        console.log(data);
-    }
-   
-    
     
     return (
         <div>
@@ -21,7 +15,7 @@ const Cart = () => {
             </ul>
                 
             <div className = "testingLink">
-                {Test()}
+                
             </div>
             
         </div>

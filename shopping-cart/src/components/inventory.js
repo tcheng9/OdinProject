@@ -61,8 +61,7 @@ const Inventory = () => {
                 <Link to = "/">
                     <li> Home</li>
                 </Link>
-                <Link to = {{pathname:"/cart",
-                    state: {name: "jack", age: 25, city: "antwep"}}}>
+                <Link to {{ pathname: "/cart", data: inventory}}>
                     Cart 
                 </Link>
             </ul>
