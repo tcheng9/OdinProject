@@ -1,7 +1,7 @@
 
 
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import App from "./App";
+import App from "../App";
 import Home from './Home';
 import Hiscores from './Hiscores';
 import WaldoMain from "./WaldoMain";
