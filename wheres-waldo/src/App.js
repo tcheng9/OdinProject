@@ -8,6 +8,9 @@ function App() {
         <li>
           <Link to = "/WaldoMain"> Waldo Page </Link>
         </li>
+        <li>
+          <Link to = "/Hiscores"> Hiscores </Link>
+        </li>
       </ul>
     </div>
   );
