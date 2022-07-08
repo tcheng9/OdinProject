@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import waldo from '../waldo_beach.jpg';
+import './WaldoMain.css';
 
 const WaldoMain = () => {
     return (
@@ -14,6 +15,10 @@ const WaldoMain = () => {
                 <Link to = "/Hiscores"> Hiscores </Link>
                 </li>
             </ul>
+            <div id = "CursorCircle">
+
+                <div id = "InnerCircle"></div>
+            </div>
         </div>
     )
 }
