@@ -6,7 +6,7 @@ import {useState, useEffect} from 'react';
 const WaldoMain = () => {
     const [x, setX] = useState();
     const [y, setY] = useState();
-    
+    const [seconds, setSeconds] = useState(0);
     function setXY() {
         
         let circleDiv = document.getElementById('CursorCircle');
@@ -39,6 +39,14 @@ const WaldoMain = () => {
         }
     }
     
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setSeconds(seconds => seconds + 1);     
+            }, 1000);
+            
+            
+            return () => clearInterval(interval);
+    }, [seconds]);
 
     return (
         <div>
@@ -59,27 +67,14 @@ const WaldoMain = () => {
 
                 <div id = "InnerCircle"></div>
             </div>
-            <WaldoTimer/>
-        </div>
-    )
-}
-
-const WaldoTimer = () => {
-    const [seconds, setSeconds] = useState(0);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setSeconds(seconds => seconds + 1);            
-            }, 1000);
             
-            return () => clearInterval(interval);
-    }, []);
-    
-    return (
-        <div>
-            {seconds} second has past
+            <div>
+                {seconds} second has past
+            </div>
         </div>
     )
 }
+
+
 
 export default WaldoMain;
