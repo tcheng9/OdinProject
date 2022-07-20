@@ -2,11 +2,15 @@ import {Link} from 'react-router-dom';
 import waldo from '../waldo_beach.jpg';
 import './WaldoMain.css';
 import {useState, useEffect} from 'react';
+import {getDatabase} from "firebase/database";
+
 
 const WaldoMain = () => {
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
     const [seconds, setSeconds] = useState(0);
+    const database = getDatabase();
+    
     function setXY() {
         
         let circleDiv = document.getElementById('CursorCircle');
@@ -26,6 +30,13 @@ const WaldoMain = () => {
         console.log("Y coordinate: " + (e.screenY - 150));
         setX(e.screenX - 50);
         setY(e.screenY - 150);
+        console.log(seconds);
+
+        if (x > 50 && y > 50 && x < 300 && y < 300){
+            var name = prompt("please enter your name");
+            console.log(name);
+        }
+
     }
 
     // const checkWaldo = (e,x,y) => {
