@@ -1,6 +1,41 @@
 import {Link} from 'react-router-dom';
+import {useState, useEffect, useRef} from 'react';
+import {firestore} from "../firebase";
+import {addDoc, collection} from "@firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 const Hiscores = () => {
+    const [winners, setWinners] = useState([]);
+
+    // useEffect(() => {
+    //     firebase.firestore.collection('winnerNames').onSnapshot(snapshot => 
+    //     {
+    //         setWinners(snapshot.docs.map(doc => ({
+    //             id: doc.data().name,
+    //             time: doc.data().time
+
+    //         })))
+    //     })
+    // })
+
+    useEffect(() => {
+        firestore
+        .firestore()
+        .collection("winnerNames")
+        .onSnapshot(snapshot => {
+            const winners = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data(),
+            }))
+            setWinners(winners);
+        })
+    },[])
+        
+
+    
+   
     return (
         <div>
             Hiscores page
@@ -12,19 +47,9 @@ const Hiscores = () => {
                 <Link to = "/"> App main page </Link>
                 </li>
             </ul>
-
-            <table>
-                <tr>
-                    <th> Name </th>
-                    <th> Time </th>
-                </tr>
-
-                <tr>
-                    <td> Tommy </td>
-                    <td> 1:00 </td>
-    
-                </tr>
-            </table>
+        <div>
+            {winners}
+        </div>
         </div>
     )
 }

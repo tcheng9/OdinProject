@@ -1,16 +1,43 @@
 import {Link} from 'react-router-dom';
 import waldo from '../waldo_beach.jpg';
 import './WaldoMain.css';
-import {useState, useEffect} from 'react';
-import {getDatabase} from "firebase/database";
-
+import {useState, useEffect, useRef} from 'react';
+import {firestore} from "../firebase";
+import {addDoc, collection} from "@firebase/firestore";
+import { FirebaseError } from 'firebase/app';
 
 const WaldoMain = () => {
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
     const [seconds, setSeconds] = useState(0);
-    const database = getDatabase();
+    const [userName, setUserName] = useState();
+    // const database = getDatabase();
     
+    const messageRef = useRef();
+    const ref = collection(firestore, "messages");
+
+    // const handleSave = async (e) => {
+    //     console.log(userName);
+    //     await addDoc(collection(firestore, "winnerNames"), {
+    //         name:userName,
+    //     }).then(function(res){
+    //         alert("data is successfuly added")
+    //     }).catch(function(err){
+    //         alert("data cannot be added");
+    //     })
+    // };
+
+    function submitName(text, seconds){
+        addDoc(collection(firestore, "winnerNames"), {
+            name:text,
+            time: seconds,
+        }).then(function(res){
+            alert("data is successfuly added")
+        }).catch(function(err){
+            alert("data cannot be added");
+        })
+    }
+  
     function setXY() {
         
         let circleDiv = document.getElementById('CursorCircle');
@@ -34,7 +61,8 @@ const WaldoMain = () => {
 
         if (x > 50 && y > 50 && x < 300 && y < 300){
             var name = prompt("please enter your name");
-            console.log(name);
+            setUserName(name);
+            submitName(name, seconds);
         }
 
     }
@@ -96,8 +124,8 @@ const WaldoMain = () => {
                 {seconds} second has past
             </div>
 
-            <div id = "winnerForm">
-                
+            <div>
+                {/* <button id = "btnAddName" onClick = {handleSave}>Add name to firebase DB</button> */}
             </div>
         </div>
     )
