@@ -1,37 +1,24 @@
-import {Link} from 'react-router-dom';
+import {Link, useResolvedPath} from 'react-router-dom';
 import {useState, useEffect, useRef} from 'react';
 import {firestore} from "../firebase";
-import {addDoc, collection} from "@firebase/firestore";
-import { doc, getDoc } from "firebase/firestore";
+import {addDoc, collection, getDocs} from "firebase/firestore";
+
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 const Hiscores = () => {
     const [winners, setWinners] = useState([]);
+    const userCollectionsRef = collection(firestore, "winnerNames");
 
-    // useEffect(() => {
-    //     firebase.firestore.collection('winnerNames').onSnapshot(snapshot => 
-    //     {
-    //         setWinners(snapshot.docs.map(doc => ({
-    //             id: doc.data().name,
-    //             time: doc.data().time
-
-    //         })))
-    //     })
-    // })
 
     useEffect(() => {
-        firestore
-        .firestore()
-        .collection("winnerNames")
-        .onSnapshot(snapshot => {
-            const winners = snapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data(),
-            }))
-            setWinners(winners);
-        })
-    },[])
+        const getUsers = async () => {
+            const data = await getDocs(userCollectionsRef);
+            setWinners(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+        };
+
+        getUsers();
+    }, []);
         
 
     
@@ -47,10 +34,31 @@ const Hiscores = () => {
                 <Link to = "/"> App main page </Link>
                 </li>
             </ul>
-        <div>
-            {winners}
+        
+       
+            <table>
+                <thead>
+                <tr>
+                    <td> Name </td>
+                    <td> Time </td>
+                </tr>
+                </thead>
+            </table>
+
+            {winners.map((user) => {
+                return (
+                    <table>
+                        <thead>
+                        <tr>
+                            <td> {user.name} </td>
+                            <td> {user.time} </td>
+                        </tr>
+                        </thead>
+                    </table>        
+            )})}
+        
         </div>
-        </div>
+        
     )
 }
 
